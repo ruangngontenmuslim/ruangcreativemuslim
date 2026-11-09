@@ -498,6 +498,117 @@ export default function CuanFacelessLandingPage() {
             </div>
           </div>
 
+          {/* Pricing & Offer Section (Promo Spesial Hari Ini & Besok!) */}
+          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[24px] mb-6 flex flex-col items-center">
+            
+            {/* Section Heading */}
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-2.5">
+              Promo Spesial Hari Ini &amp; Besok!
+            </h2>
+
+            {/* Subheadline */}
+            <p className="text-[13px] sm:text-[14px] text-gray-700 dark:text-gray-300 leading-relaxed text-center mb-5">
+              Daftar sekarang dan dapatkan BONUS serta diskon spesial. Kamu bisa mendapatkan Paket Ebook Pro mulai dari:
+            </p>
+
+            {/* 3 Pricing Packages */}
+            <div className="w-full space-y-3.5">
+              
+              {/* Package 1: Basic */}
+              <div className="w-full p-4 rounded-2xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left">
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Paket Belajar</span>
+                  <h3 className="font-extrabold text-base sm:text-lg text-gray-950 dark:text-white leading-tight">
+                    Paket Ebook Pro (Basic)
+                  </h3>
+                  <div className="flex items-baseline gap-2 mt-1">
+                    <span className="text-xs sm:text-sm text-gray-400 dark:text-gray-500 line-through">
+                      Rp2.419.000
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">
+                      Rp99.000
+                    </span>
+                  </div>
+                </div>
+                <Link
+                  href="/checkout?type=PRO_BOOK"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-sm text-center bg-orange-500 hover:bg-orange-600 text-white shadow-xs transition-all active:scale-[0.98] shrink-0"
+                >
+                  Daftar Sekarang
+                </Link>
+              </div>
+
+              {/* Package 2: PLR (Paling Populer) */}
+              <div className="relative w-full p-4 rounded-2xl bg-orange-50/50 dark:bg-orange-950/20 border-2 border-orange-500/80 dark:border-orange-500/60 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left">
+                <div className="absolute -top-3 right-4 px-2.5 py-0.5 rounded-full bg-orange-500 text-white font-extrabold text-[10px] tracking-wider uppercase shadow-xs">
+                  Paling Populer
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-orange-600 dark:text-orange-400">Hak Jual Ulang</span>
+                  <h3 className="font-extrabold text-base sm:text-lg text-gray-950 dark:text-white leading-tight">
+                    Paket Ebook Pro (PLR)
+                  </h3>
+                  <div className="flex items-baseline gap-2 mt-1">
+                    <span className="text-xs sm:text-sm text-gray-400 dark:text-gray-500 line-through">
+                      Rp2.999.000
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">
+                      Rp149.000
+                    </span>
+                  </div>
+                </div>
+                <Link
+                  href="/checkout?type=PRO_BOOK_PRO"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-sm text-center bg-orange-500 hover:bg-orange-600 text-white shadow-xs transition-all active:scale-[0.98] shrink-0"
+                >
+                  Daftar Sekarang
+                </Link>
+              </div>
+
+              {/* Package 3: Plus */}
+              <div className="relative w-full p-4 rounded-2xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-left">
+                <div className="absolute -top-3 right-4 px-2.5 py-0.5 rounded-full bg-emerald-600 text-white font-extrabold text-[10px] tracking-wider uppercase shadow-xs">
+                  Paling Lengkap
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-gray-500 dark:text-gray-400">Akses Komplit</span>
+                  <h3 className="font-extrabold text-base sm:text-lg text-gray-950 dark:text-white leading-tight">
+                    Paket Ebook Pro (Plus)
+                  </h3>
+                  <div className="flex items-baseline gap-2 mt-1">
+                    <span className="text-xs sm:text-sm text-gray-400 dark:text-gray-500 line-through">
+                      Rp3.100.000
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black text-emerald-600 dark:text-emerald-400">
+                      Rp199.000
+                    </span>
+                  </div>
+                </div>
+                <Link
+                  href="/checkout?type=PRO_PLUS"
+                  className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-sm text-center bg-orange-500 hover:bg-orange-600 text-white shadow-xs transition-all active:scale-[0.98] shrink-0"
+                >
+                  Daftar Sekarang
+                </Link>
+              </div>
+
+            </div>
+
+            {/* Urgency Box */}
+            <div className="w-full mt-4 p-3 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 border border-amber-500/20 dark:border-amber-500/30 text-amber-900 dark:text-amber-200 font-bold text-[13px] sm:text-[14px] text-center flex items-center justify-center gap-1.5 shadow-xs">
+              <span>⏳</span>
+              <span>Promo hanya berlaku hari ini dan besok!</span>
+            </div>
+
+            {/* Quote Penutup */}
+            <div className="w-full mt-3 px-4 py-3 rounded-xl bg-gray-50/60 dark:bg-white/[0.02] border border-dashed border-gray-300 dark:border-white/15 text-center">
+              <p className="text-[13.5px] sm:text-[14.5px] font-medium italic text-gray-800 dark:text-gray-200 leading-relaxed">
+                &ldquo;Modal daftar cuma 99 ribu, ilmunya bisa jadi bekal untuk masa depan keluarga.&rdquo;
+              </p>
+            </div>
+
+          </div>
+
         </main>
 
         {/* Bottom Footer Inside the Canvas */}
