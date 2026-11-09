@@ -269,6 +269,88 @@ export default function CuanFacelessLandingPage() {
             </div>
           </div>
 
+          {/* Advantages Section (Keunggulan Tutorial Ini) */}
+          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-4">
+            
+            {/* Section Heading */}
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
+              Keunggulan Tutorial Ini
+            </h2>
+
+            {/* 7 Advantage Checklist Cards */}
+            <div className="space-y-2 text-left">
+              {/* Point 1 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Cocok untuk <strong className="text-gray-950 dark:text-white font-bold">pemula/GAPTEK</strong>.
+                </span>
+              </div>
+
+              {/* Point 2 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Akses materi <strong className="text-gray-950 dark:text-white font-bold">selamanya</strong>, bisa dibuka di mana saja dan kapan pun.
+                </span>
+              </div>
+
+              {/* Point 3 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  <strong className="text-emerald-700 dark:text-emerald-400 font-bold">Free update</strong> materi seumur hidup.
+                </span>
+              </div>
+
+              {/* Point 4 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  <strong className="text-gray-950 dark:text-white font-bold">Konsultasi 1 ON 1</strong> dengan saya langsung via WhatsApp personal.
+                </span>
+              </div>
+
+              {/* Point 5 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Praktek <strong className="text-gray-950 dark:text-white font-bold">100% pake hp doang</strong>.
+                </span>
+              </div>
+
+              {/* Point 6 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Disiapkan <strong className="text-gray-950 dark:text-white font-bold">modul tertulis &amp; video</strong>.
+                </span>
+              </div>
+
+              {/* Point 7 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Disiapin <strong className="text-emerald-700 dark:text-emerald-400 font-bold">Tools Ngonten dan Tools Riset</strong>.
+                </span>
+              </div>
+            </div>
+          </div>
+
         </main>
 
         {/* Bottom Footer Inside the Canvas */}
