@@ -189,7 +189,7 @@ export default function CuanFacelessLandingPage() {
               Yang Kamu Dapetin
             </h2>
 
-            {/* 5 Benefit Checklist Cards */}
+            {/* 8 Benefit Checklist Cards */}
             <div className="space-y-2 text-left">
               {/* Point 1 */}
               <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
@@ -197,7 +197,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Diajarin dari A-Z ngonten ilustrasi faceless dari <strong className="text-gray-950 dark:text-white font-bold">NOL sampai CUAN</strong>.
+                  Dibimbing mulai dari nol memahami <strong className="text-gray-950 dark:text-white font-bold">bisnis produk digital</strong>.
                 </span>
               </div>
 
@@ -207,7 +207,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Diajarin biar akun IG kamu jadi <strong className="text-gray-950 dark:text-white font-bold">mesin penghasil cuan</strong>.
+                  Dibimbing membangun <strong className="text-gray-950 dark:text-white font-bold">akun Instagram</strong> dengan lebih terarah.
                 </span>
               </div>
 
@@ -217,7 +217,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Diajarin agar konten kamu viewsnya tembus <strong className="text-emerald-700 dark:text-emerald-400 font-bold">10 RB ++</strong>.
+                  Dibimbing menemukan dan membuat <strong className="text-gray-950 dark:text-white font-bold">konten yang menarik</strong>.
                 </span>
               </div>
 
@@ -227,7 +227,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Diajarin cara buat konten <strong className="text-gray-950 dark:text-white font-bold">tanpa nunjukin wajah</strong>.
+                  Dibimbing memahami cara <strong className="text-gray-950 dark:text-white font-bold">mendistribusikan produk digital</strong>.
                 </span>
               </div>
 
@@ -237,7 +237,37 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Diajarin pakai sistem <strong className="text-gray-950 dark:text-white font-bold">OTOMATISASI</strong> biar kamu lagi apapun dan dimanapun cuan masuk terus.
+                  Dibimbing menemukan cara monetisasi <strong className="text-gray-950 dark:text-white font-bold">tanpa harus punya produk sendiri</strong>.
+                </span>
+              </div>
+
+              {/* Point 6 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Akses <strong className="text-emerald-700 dark:text-emerald-400 font-bold">8 juta+ produk digital</strong> yang siap dijual kembali.
+                </span>
+              </div>
+
+              {/* Point 7 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  <strong className="text-gray-950 dark:text-white font-bold">Ebook lengkap</strong> dengan video tutorial.
+                </span>
+              </div>
+
+              {/* Point 8 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  <strong className="text-emerald-700 dark:text-emerald-400 font-bold">Bonus ebook</strong> untuk personal use.
                 </span>
               </div>
             </div>
@@ -259,7 +289,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Cocok untuk <strong className="text-gray-950 dark:text-white font-bold">pemula/GAPTEK</strong>.
+                  Praktek <strong className="text-gray-950 dark:text-white font-bold">100% bisa pake hp doang</strong>.
                 </span>
               </div>
 
@@ -269,7 +299,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Akses materi <strong className="text-gray-950 dark:text-white font-bold">selamanya</strong>, bisa dibuka di mana saja dan kapan pun.
+                  <strong className="text-gray-950 dark:text-white font-bold">Roadmap harian 30 hari</strong>.
                 </span>
               </div>
 
@@ -279,7 +309,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  <strong className="text-emerald-700 dark:text-emerald-400 font-bold">Free update</strong> materi seumur hidup.
+                  <strong className="text-gray-950 dark:text-white font-bold">Template Hook Konten</strong> (Ebook).
                 </span>
               </div>
 
@@ -289,7 +319,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  <strong className="text-gray-950 dark:text-white font-bold">Konsultasi 1 ON 1</strong> dengan saya langsung via WhatsApp personal.
+                  Akses materi <strong className="text-gray-950 dark:text-white font-bold">lifetime</strong>, bisa diakses dimana saja.
                 </span>
               </div>
 
@@ -299,7 +329,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Praktek <strong className="text-gray-950 dark:text-white font-bold">100% pake hp doang</strong>.
+                  <strong className="text-emerald-700 dark:text-emerald-400 font-bold">Free update</strong> materi seumur hidup tidak perlu bayar lagi.
                 </span>
               </div>
 
@@ -309,7 +339,7 @@ export default function CuanFacelessLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Disiapkan <strong className="text-gray-950 dark:text-white font-bold">modul tertulis &amp; video</strong>.
+                  <strong className="text-gray-950 dark:text-white font-bold">Konsultasi 1 on 1</strong> langsung via WhatsApp personal.
                 </span>
               </div>
 
