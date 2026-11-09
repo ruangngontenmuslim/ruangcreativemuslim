@@ -501,15 +501,25 @@ export default function CuanFacelessLandingPage() {
           {/* Pricing & Offer Section (Promo Spesial Hari Ini & Besok!) */}
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[24px] mb-6 flex flex-col items-center">
             
-            {/* Section Heading */}
+            {/* Section Heading (Locked 2 Lines) */}
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-2.5">
-              Promo Spesial Hari Ini &amp; Besok!
+              <span className="block">Promo Spesial</span>
+              <span className="block">Hari Ini &amp; Besok!</span>
             </h2>
 
             {/* Subheadline */}
-            <p className="text-[13px] sm:text-[14px] text-gray-700 dark:text-gray-300 leading-relaxed text-center mb-5">
+            <p className="text-[13px] sm:text-[14px] text-gray-700 dark:text-gray-300 leading-relaxed text-center mb-3">
               Daftar sekarang dan dapatkan BONUS serta diskon spesial. Kamu bisa mendapatkan Paket Ebook Pro mulai dari:
             </p>
+
+            {/* Animated Cloud / Callout Banner mengajak klik/daftar */}
+            <div className="mb-5 flex items-center justify-center">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/10 via-amber-500/15 to-orange-500/10 dark:from-orange-500/20 dark:via-amber-500/25 dark:to-orange-500/20 border border-orange-500/30 dark:border-orange-500/40 text-orange-600 dark:text-orange-300 font-bold text-xs sm:text-[13px] shadow-xs animate-bounce select-none">
+                <span className="text-sm">☁️</span>
+                <span>Pilih paket terbaikmu di bawah ini</span>
+                <span className="text-sm">👇</span>
+              </div>
+            </div>
 
             {/* 3 Pricing Packages */}
             <div className="w-full space-y-3.5">
@@ -531,10 +541,10 @@ export default function CuanFacelessLandingPage() {
                   </div>
                 </div>
                 <Link
-                  href="/checkout?type=PRO_BOOK"
+                  href="/?pricing=true&cat=ebook"
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-sm text-center bg-orange-500 hover:bg-orange-600 text-white shadow-xs transition-all active:scale-[0.98] shrink-0"
                 >
-                  Daftar Sekarang
+                  Detail Paket
                 </Link>
               </div>
 
@@ -558,10 +568,10 @@ export default function CuanFacelessLandingPage() {
                   </div>
                 </div>
                 <Link
-                  href="/checkout?type=PRO_BOOK_PRO"
+                  href="/?pricing=true&cat=ebook"
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-sm text-center bg-orange-500 hover:bg-orange-600 text-white shadow-xs transition-all active:scale-[0.98] shrink-0"
                 >
-                  Daftar Sekarang
+                  Detail Paket
                 </Link>
               </div>
 
@@ -585,10 +595,10 @@ export default function CuanFacelessLandingPage() {
                   </div>
                 </div>
                 <Link
-                  href="/checkout?type=PRO_PLUS"
+                  href="/?pricing=true&cat=plus"
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-sm text-center bg-orange-500 hover:bg-orange-600 text-white shadow-xs transition-all active:scale-[0.98] shrink-0"
                 >
-                  Daftar Sekarang
+                  Detail Paket
                 </Link>
               </div>
 
