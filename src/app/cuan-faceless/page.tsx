@@ -361,6 +361,68 @@ export default function CuanFacelessLandingPage() {
             </div>
           </div>
 
+          {/* FAQ Section (Yang Sering Ditanyain) */}
+          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-4">
+            
+            {/* Section Heading */}
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
+              Yang Sering Ditanyain
+            </h2>
+
+            {/* 5 Clean Q&A Cards */}
+            <div className="space-y-2.5 text-left">
+              {/* Q1 */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
+                  Gaptek bisa ikut?
+                </h3>
+                <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
+                  Bisa banget, karena saya juga awalnya super gaptek.
+                </p>
+              </div>
+
+              {/* Q2 */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
+                  Apakah hanya 1x bayar?
+                </h3>
+                <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
+                  Benar, hanya sekali bayar saja.
+                </p>
+              </div>
+
+              {/* Q3 */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
+                  Apakah bisa kalo pake HP doang?
+                </h3>
+                <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
+                  Insyaallah bisa banget.
+                </p>
+              </div>
+
+              {/* Q4 */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
+                  Apakah bisa kalo follower IG-nya masih sedikit banget?
+                </h3>
+                <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
+                  Bisa banget dong, btw saya juga start dari <strong className="text-gray-950 dark:text-white font-bold">NOL follower</strong>.
+                </p>
+              </div>
+
+              {/* Q5 */}
+              <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
+                  Apakah ada jaminan berhasil..?
+                </h3>
+                <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
+                  Tidak ada jaminan 100% berhasil, tapi kelas private 1 ON 1 ini materinya terbukti. Kita sebagai hamba hanya bisa berusaha dan berdo&apos;a, sisanya tetap di tangan Allah SWT.
+                </p>
+              </div>
+            </div>
+          </div>
+
         </main>
 
         {/* Bottom Footer Inside the Canvas */}
