@@ -2001,3 +2001,105 @@ export function ClawdMaintenanceVisual({ className = "" }: { className?: string 
     </div>
   );
 }
+
+// ============================================================================
+// 10B. SCENE: PROMO INVITE / CLOSER (CLAWD CALL-TO-ACTION)
+// ----------------------------------------------------------------------------
+// Clawd excited & gembira, melompat riang dengan squash & stretch,
+// mata berbinar-binar (sparkle starstruck), melambaikan tangan menyapa pengunjung,
+// dan tangan kanannya aktif menunjuk antusias ke paket promo di bawah!
+// ============================================================================
+function renderPromoInviteScene({ t, dt, isDark, st }: SceneCtx) {
+  const L = 3.0;
+  const U = 4.0;
+  const X = 50;
+  const G = 50;
+  const c = t % L;
+
+  let svg = "";
+
+  // 1. Sparkles ceria di sekitar Clawd
+  svg += drawSparkle(X - 32, 20, 4, PAL.orange, 0.7 + 0.3 * Math.sin(t * 6));
+  svg += drawSparkle(X + 32, 16, 4.5, PAL.ochre, 0.6 + 0.4 * Math.cos(t * 5));
+  svg += drawSparkle(X - 26, 40, 3, PAL.ochre, 0.5 + 0.3 * Math.sin(t * 4));
+  svg += drawSparkle(X + 28, 38, 3.5, PAL.emerald, 0.6 + 0.4 * Math.cos(t * 5.5));
+
+  // 2. Animasi lompatan gembira (takeoff di 0.25s, air duration 0.45s)
+  const hop = hopCurve(c, 0.25, 0.45, 2.2);
+  const isJumping = c >= 0.25 && c < 0.7;
+
+  // 3. Tangan kiri melambai ramah menyapa
+  const wave = Math.sin(t * 9) * 4.5;
+  const handL = isJumping
+    ? [-19, -28 + wave, -0.65]
+    : [-17, -19 + wave * 0.7, -0.45];
+
+  // 4. Tangan kanan menunjuk ke bawah (pointing down ke paket harga)
+  const pointProgress = isJumping ? 0.3 : 0.6 + 0.4 * Math.sin(t * 6);
+  const handR = isJumping
+    ? [19, -24, 0.5]
+    : [17, 8 + pointProgress * 7, 0.35];
+
+  // 5. Efek debu halus saat Clawd mendarat
+  svg += dustPuff(c - 0.7, X, G, isDark);
+
+  // 6. Sparkles ekstra di atas kepala saat melompat gembira
+  if (isJumping) {
+    svg += drawSparkle(X - 12, 10, 4, PAL.ochre, 0.95);
+    svg += drawSparkle(X + 14, 8, 4.5, PAL.orange, 0.95);
+  }
+
+  // 7. Panah petunjuk ke bawah di dekat tangan kanan Clawd saat mendarat
+  if (!isJumping) {
+    const arrowBounce = Math.sin(t * 7) * 3;
+    const arrowX = X + 23;
+    const arrowY = G - 4 + arrowBounce;
+    svg +=
+      `<g transform="translate(${f1(arrowX)}, ${f1(arrowY)})">` +
+      `<path d="M -4 -8 L 0 -4 L 4 -8" fill="none" stroke="${PAL.orange}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>` +
+      `<path d="M -4 -3 L 0 1 L 4 -3" fill="none" stroke="${PAL.ochre}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>` +
+      `</g>`;
+  }
+
+  // 8. Render Karakter Clawd dengan ekspresi adaptif
+  // Saat melompat: mata bintang bersinar ("spark"), mulut riang ("grin")
+  // Saat berdiri: mata tersenyum ceria ("happy"), melirik ke bawah ("lookY: 0.5")
+  const eyeType = isJumping ? "spark" : "happy";
+  const mouthType = isJumping ? "grin" : "smile";
+
+  svg += drawClawd(
+    X,
+    G,
+    U,
+    {
+      id: "promo-invite-clawd",
+      view: "front",
+      dy: hop.dy,
+      sq: hop.sq,
+      lean: isJumping ? 0.06 : Math.sin(t * 3.5) * 0.05,
+      rot: isJumping ? Math.sin(t * 7) * 2.5 : 0,
+      lookX: 0,
+      lookY: isJumping ? -0.2 : 0.5, // melirik ramah ke bawah ke arah harga
+      eyes: eyeType,
+      brows: "confident",
+      mouth: mouthType,
+      blush: 0.95,
+      handL,
+      handR,
+      forceBlink: faceBlink(st, "promo", `${eyeType}|${mouthType}`, t),
+    },
+    t,
+    isDark
+  );
+
+  return svg;
+}
+
+export function ClawdPromoVisual({ className = "" }: { className?: string }) {
+  const svgRef = useClawdScene(renderPromoInviteScene, 50, 32);
+  return (
+    <div className={`inline-flex items-center justify-center pointer-events-none select-none ${className}`} aria-hidden="true">
+      <svg ref={svgRef} viewBox="0 0 100 64" className="w-24 h-16 sm:w-28 sm:h-18 overflow-visible" xmlns="http://www.w3.org/2000/svg" />
+    </div>
+  );
+}

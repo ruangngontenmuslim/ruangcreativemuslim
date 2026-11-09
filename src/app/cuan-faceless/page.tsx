@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
 import { CuanFacelessNavbar } from "./CuanFacelessNavbar";
+import { ClawdPromoCallout } from "./ClawdPromoCallout";
 
 export const metadata: Metadata = {
   title: "Cara Dapatin Cuan dari Produk Digital Lewat Konten Faceless | ruangcreativemuslim",
@@ -508,18 +509,12 @@ export default function CuanFacelessLandingPage() {
             </h2>
 
             {/* Subheadline */}
-            <p className="text-[13px] sm:text-[14px] text-gray-700 dark:text-gray-300 leading-relaxed text-center mb-3">
+            <p className="text-[13px] sm:text-[14px] text-gray-700 dark:text-gray-300 leading-relaxed text-center mb-1">
               Daftar sekarang dan dapatkan BONUS serta diskon spesial. Kamu bisa mendapatkan Paket Ebook Pro mulai dari:
             </p>
 
-            {/* Animated Cloud / Callout Banner mengajak klik/daftar */}
-            <div className="mb-5 flex items-center justify-center">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/10 via-amber-500/15 to-orange-500/10 dark:from-orange-500/20 dark:via-amber-500/25 dark:to-orange-500/20 border border-orange-500/30 dark:border-orange-500/40 text-orange-600 dark:text-orange-300 font-bold text-xs sm:text-[13px] shadow-xs animate-bounce select-none">
-                <span className="text-sm">☁️</span>
-                <span>Pilih paket terbaikmu di bawah ini</span>
-                <span className="text-sm">👇</span>
-              </div>
-            </div>
+            {/* Animated Clawd Mascot Callout mengajak klik/daftar */}
+            <ClawdPromoCallout />
 
             {/* 3 Pricing Packages */}
             <div className="w-full space-y-3.5">
