@@ -159,21 +159,22 @@ export default function CuanFacelessLandingPage() {
           </div>
 
           {/* Personal Results Showcase Section */}
-          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
+          <div className="w-full mt-[20px] mb-0 flex flex-col items-center">
             
-            {/* Section Heading (Harmonis & Seragam dengan Heading Lainnya) */}
-            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
-              Nah, Kalo Ini...
-            </h2>
+            {/* Section Heading & Text Container (Tersusun Rapi di Tengah) */}
+            <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto text-center">
+              <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] mb-4">
+                Nah, Kalo Ini...
+              </h2>
 
-            {/* Section Paragraph (Seragam dengan Body Text Lainnya) */}
-            <div className="text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
-              <p>
-                Beberapa hasil yang berhasil saya kumpulkan dari bisnis produk digital lewat konten faceless, tanpa perlu menampilkan wajah, hanya dalam beberapa bulan.
-              </p>
+              <div className="text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
+                <p>
+                  Beberapa hasil yang berhasil saya kumpulkan dari bisnis produk digital lewat konten faceless, tanpa perlu menampilkan wajah, hanya dalam beberapa bulan.
+                </p>
+              </div>
             </div>
 
-            {/* Visual Income Proof (Tanpa Bungkus Kontainer, Jarak Presisi 20px) */}
+            {/* Visual Income Proof (Full Width Selebar Canvas Seperti Hero & Tools Ajaib) */}
             <div className="mt-[20px] w-full flex justify-center">
               <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
                 <Image
