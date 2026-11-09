@@ -5,10 +5,10 @@ import { Check } from "lucide-react";
 import { CuanFacelessNavbar } from "./CuanFacelessNavbar";
 
 export const metadata: Metadata = {
-  title: "Tutorial Dapat Cuan dari Produk Digital Lewat Konten Faceless | ruangcreativemuslim",
-  description: "Tutorial dapat cuan dari produk digital lewat konten faceless. Bonus 8 tools untuk ngonten dan riset Instagram, TikTok, Facebook, dan YouTube.",
+  title: "Cara Dapatin Cuan dari Produk Digital Lewat Konten Faceless | ruangcreativemuslim",
+  description: "Cara dapatin cuan dari produk digital lewat konten faceless. Bonus 8 tools untuk ngonten dan riset Instagram, TikTok, Facebook, dan YouTube.",
   openGraph: {
-    title: "Tutorial Dapat Cuan dari Produk Digital Lewat Konten Faceless",
+    title: "Cara Dapatin Cuan dari Produk Digital Lewat Konten Faceless",
     description: "Belajar menghasilkan uang dari produk digital tanpa harus tampil wajah. Cukup modal HP dan internet!",
     url: "https://www.ruangcreativemuslim.com/cuan-faceless",
     siteName: "ruangcreativemuslim",
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
         url: "/img_paket/paket_ebook.png",
         width: 1200,
         height: 630,
-        alt: "Tutorial Dapat Cuan dari Produk Digital Lewat Konten Faceless",
+        alt: "Cara Dapatin Cuan dari Produk Digital Lewat Konten Faceless",
       },
     ],
     locale: "id_ID",
@@ -40,16 +40,16 @@ export default function CuanFacelessLandingPage() {
           
           {/* Main Headline (Harmonized 3-Line Cascade across Mobile & Desktop) */}
           <h1 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center max-w-[460px] mx-auto">
-            <span className="block">Tutorial Dapat Cuan</span>
+            <span className="block">Cara Dapatin Cuan</span>
             <span className="block">dari Produk Digital Lewat</span>
             <span className="block">Konten Faceless</span>
           </h1>
 
-          {/* Hero Visual Mockup (Ebook & Smartphone & Points) */}
+          {/* Hero Visual Mockup (Ebook & Smartphone & Points - Borderless) */}
           <div className="mt-[20px] w-full flex justify-center">
-            <div className="w-full overflow-hidden rounded-2xl border border-gray-200/90 dark:border-white/15 shadow-xs">
+            <div className="w-full overflow-hidden rounded-2xl">
               <Image
-                src="/cuan-faceless/hero-mockup-ebook-v2.png"
+                src="/cuan-faceless/hero-mockup-ebook-v3.png"
                 alt="Ruang Ngonten Faceless - Sudah Dibaca Oleh 800+ Creator Lebih"
                 width={1024}
                 height={576}
