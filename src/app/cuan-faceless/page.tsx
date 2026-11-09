@@ -61,62 +61,65 @@ export default function CuanFacelessLandingPage() {
           </div>
 
           {/* Narrative Story Section (Menyatu Bersih di Canvas) */}
-          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
+          <div className="w-full mt-[20px] mb-0 flex flex-col items-center">
             
-            {/* Story Heading (Posisi di Tengah, 2 Baris Terkunci, Ukuran Font Sama dengan Headline Utama) */}
-            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
-              <span className="block">Ceritanya gini,</span>
-              <span className="block">teman-teman</span>
-            </h2>
+            {/* Story Heading & Text Container (Tersusun Rapi di Tengah) */}
+            <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto text-center">
+              {/* Story Heading (Posisi di Tengah, 2 Baris Terkunci, Ukuran Font Sama dengan Headline Utama) */}
+              <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] mb-4">
+                <span className="block">Ceritanya gini,</span>
+                <span className="block">teman-teman</span>
+              </h2>
 
-            {/* Story Paragraphs */}
-            <div className="space-y-2 text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
-              <p>Di tahun 2025, kantor saya mulai banyak melakukan PHK. Jujur, saya pun khawatir suatu saat akan mengalami hal yang sama.</p>
-              <p>Akhirnya, saya mulai mencari cara menghasilkan uang hanya lewat HP dan dari rumah.</p>
-              <p>Saya pun iseng mencoba membuat produk digital dan memasarkannya lewat konten faceless.</p>
-              <p className="font-bold text-gray-950 dark:text-white pt-0.5">Eh, ternyata peluangnya besar banget!</p>
-            </div>
+              {/* Story Paragraphs */}
+              <div className="space-y-2 text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
+                <p>Di tahun 2025, kantor saya mulai banyak melakukan PHK. Jujur, saya pun khawatir suatu saat akan mengalami hal yang sama.</p>
+                <p>Akhirnya, saya mulai mencari cara menghasilkan uang hanya lewat HP dan dari rumah.</p>
+                <p>Saya pun iseng mencoba membuat produk digital dan memasarkannya lewat konten faceless.</p>
+                <p className="font-bold text-gray-950 dark:text-white pt-0.5">Eh, ternyata peluangnya besar banget!</p>
+              </div>
 
-            {/* Achievement Highlights (3 Kotak Poin Pencapaian) */}
-            <div className="mt-4 text-left">
-              <div className="space-y-2">
-                <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-                  <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+              {/* Achievement Highlights (3 Kotak Poin Pencapaian) */}
+              <div className="mt-4 text-left">
+                <div className="space-y-2">
+                  <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                    <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    </div>
+                    <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                      Akun Instagram dari <strong className="text-gray-950 dark:text-white font-bold">NOL</strong>, sekarang sudah <strong className="text-gray-950 dark:text-white font-bold">162 ribu followers</strong>.
+                    </span>
                   </div>
-                  <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                    Akun Instagram dari <strong className="text-gray-950 dark:text-white font-bold">NOL</strong>, sekarang sudah <strong className="text-gray-950 dark:text-white font-bold">162 ribu followers</strong>.
-                  </span>
-                </div>
 
-                <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-                  <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                    <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    </div>
+                    <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                      View yang awalnya sepi, sekarang sering <strong className="text-gray-950 dark:text-white font-bold">VIRAL</strong>.
+                    </span>
                   </div>
-                  <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                    View yang awalnya sepi, sekarang sering <strong className="text-gray-950 dark:text-white font-bold">VIRAL</strong>.
-                  </span>
-                </div>
 
-                <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-                  <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                    <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                      <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    </div>
+                    <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                      Bisa menghasilkan cuan setiap hari, dengan total <strong className="text-emerald-700 dark:text-emerald-400 font-bold">penghasilan bulanan mencapai 2 digit</strong>.
+                    </span>
                   </div>
-                  <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                    Bisa menghasilkan cuan setiap hari, dengan total <strong className="text-emerald-700 dark:text-emerald-400 font-bold">penghasilan bulanan mencapai 2 digit</strong>.
-                  </span>
                 </div>
               </div>
             </div>
 
-            {/* Visual Social Proof (Tanpa Bungkus Kontainer, Jarak Simetris Presisi 20px) */}
+            {/* Visual Social Proof (Full Width Selebar Canvas Seperti Hero & Tools Ajaib) */}
             <div className="mt-[20px] w-full flex justify-center">
               <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
                 <Image
-                  src="/cuan-faceless/bukti-instagram-v2.jpg"
-                  alt="Bukti akun Instagram ruangcreativemuslim 162 ribu followers dan konten viral"
-                  width={658}
-                  height={769}
+                  src="/cuan-faceless/bukti-instagram-viral.jpg"
+                  alt="Bukti akun Instagram ruangcreativemuslim dan papamenyapa ratusan ribu followers serta konten viral"
+                  width={1024}
+                  height={576}
                   className="w-full h-auto object-contain block select-none"
                   priority
                 />
