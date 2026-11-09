@@ -599,19 +599,6 @@ export default function CuanFacelessLandingPage() {
 
             </div>
 
-            {/* Urgency Box */}
-            <div className="w-full mt-4 p-3 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 border border-amber-500/20 dark:border-amber-500/30 text-amber-900 dark:text-amber-200 font-bold text-[13px] sm:text-[14px] text-center flex items-center justify-center gap-1.5 shadow-xs">
-              <span>⏳</span>
-              <span>Promo hanya berlaku hari ini dan besok!</span>
-            </div>
-
-            {/* Quote Penutup */}
-            <div className="w-full mt-3 px-4 py-3 rounded-xl bg-gray-50/60 dark:bg-white/[0.02] border border-dashed border-gray-300 dark:border-white/15 text-center">
-              <p className="text-[13.5px] sm:text-[14.5px] font-medium italic text-gray-800 dark:text-gray-200 leading-relaxed">
-                &ldquo;Modal daftar cuma 99 ribu, ilmunya bisa jadi bekal untuk masa depan keluarga.&rdquo;
-              </p>
-            </div>
-
           </div>
 
         </main>
