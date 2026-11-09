@@ -47,7 +47,7 @@ export default function CuanFacelessLandingPage() {
 
           {/* Hero Visual Mockup (Ebook & Smartphone & Points) */}
           <div className="mt-4 sm:mt-5 w-full flex justify-center">
-            <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
+            <div className="w-full overflow-hidden rounded-2xl border border-gray-200/90 dark:border-white/15 shadow-xs">
               <Image
                 src="/cuan-faceless/hero-mockup-ebook.png"
                 alt="Ruang Ngonten Faceless - Strategi Faceless Creator Ebook & 30 Day Creator Challenge"
