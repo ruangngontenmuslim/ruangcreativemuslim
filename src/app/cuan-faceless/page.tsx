@@ -46,7 +46,7 @@ export default function CuanFacelessLandingPage() {
           </h1>
 
           {/* Hero Visual Mockup (Ebook & Smartphone & Points) */}
-          <div className="mt-4 sm:mt-5 w-full flex justify-center">
+          <div className="mt-[20px] w-full flex justify-center">
             <div className="w-full overflow-hidden rounded-2xl border border-gray-200/90 dark:border-white/15 shadow-xs">
               <Image
                 src="/cuan-faceless/hero-mockup-ebook.png"
@@ -60,7 +60,7 @@ export default function CuanFacelessLandingPage() {
           </div>
 
           {/* Narrative Story Section (Menyatu Bersih di Canvas) */}
-          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-10 mb-0">
+          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
             
             {/* Story Heading (Posisi di Tengah, 2 Baris Terkunci, Ukuran Font Sama dengan Headline Utama) */}
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
