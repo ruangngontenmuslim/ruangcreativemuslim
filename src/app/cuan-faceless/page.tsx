@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { Check, Flame } from "lucide-react";
 import { CuanFacelessNavbar } from "./CuanFacelessNavbar";
 import { ClawdPromoCallout } from "./ClawdPromoCallout";
 
@@ -39,6 +39,18 @@ export default function CuanFacelessLandingPage() {
         {/* Hero Section Container */}
         <main className="flex-1 w-full px-5 sm:px-8 py-2 flex flex-col items-center text-center">
           
+          {/* Promo Pill Link (Identik dengan Homepage Tools) */}
+          <Link
+            href="/?pricing=true&cat=ebook"
+            className="group inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-semibold border border-amber-500/30 bg-amber-500/5 text-amber-600 dark:text-amber-400 hover:bg-amber-500/10 hover:border-amber-500/50 transition-all duration-200 mb-3 mt-1 select-none shadow-xs active:scale-95"
+          >
+            <Flame
+              className="w-3.5 h-3.5 text-amber-500 fill-amber-500 animate-pulse"
+            />
+            <span>PROMO hingga 95%</span>
+            <span className="ml-0.5 text-sm leading-none transition-transform duration-200 group-hover:translate-x-0.5">&rsaquo;</span>
+          </Link>
+
           {/* Main Headline (Harmonized 3-Line Cascade across Mobile & Desktop) */}
           <h1 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center max-w-[460px] mx-auto">
             <span className="block">Cara Dapatin Cuan</span>
