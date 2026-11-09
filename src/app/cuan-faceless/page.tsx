@@ -49,8 +49,8 @@ export default function CuanFacelessLandingPage() {
           <div className="mt-[20px] w-full flex justify-center">
             <div className="w-full overflow-hidden rounded-2xl border border-gray-200/90 dark:border-white/15 shadow-xs">
               <Image
-                src="/cuan-faceless/hero-mockup-ebook.png"
-                alt="Ruang Ngonten Faceless - Strategi Faceless Creator Ebook & 30 Day Creator Challenge"
+                src="/cuan-faceless/hero-mockup-ebook-v2.png"
+                alt="Ruang Ngonten Faceless - Sudah Dibaca Oleh 800+ Creator Lebih"
                 width={1024}
                 height={576}
                 className="w-full h-auto object-contain block select-none"
@@ -79,22 +79,28 @@ export default function CuanFacelessLandingPage() {
             {/* Achievement Highlights (3 Kotak Poin Pencapaian) */}
             <div className="mt-4 text-left">
               <div className="space-y-2">
-                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-                  <span className="text-base shrink-0 leading-none mt-0.5">📈</span>
+                <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                  <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </div>
                   <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
                     Akun Instagram dari <strong className="text-gray-950 dark:text-white font-bold">NOL</strong>, sekarang sudah <strong className="text-gray-950 dark:text-white font-bold">162 ribu followers</strong>.
                   </span>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-                  <span className="text-base shrink-0 leading-none mt-0.5">🔥</span>
+                <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                  <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </div>
                   <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
                     View yang awalnya sepi, sekarang sering <strong className="text-gray-950 dark:text-white font-bold">VIRAL</strong>.
                   </span>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-                  <span className="text-base shrink-0 leading-none mt-0.5">💰</span>
+                <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                  <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                  </div>
                   <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
                     Bisa menghasilkan cuan setiap hari, dengan total <strong className="text-emerald-700 dark:text-emerald-400 font-bold">penghasilan bulanan mencapai 2 digit</strong>.
                   </span>
