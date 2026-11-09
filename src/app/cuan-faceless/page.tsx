@@ -361,30 +361,8 @@ export default function CuanFacelessLandingPage() {
             </div>
           </div>
 
-          {/* 2 Magic Tools Section (Dilengkapi 2 Tools Ajaib Sekaligus) */}
-          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
-            
-            {/* Section Heading */}
-            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-0">
-              Dilengkapi 2 Tools Ajaib Sekaligus
-            </h2>
-
-            {/* Visual Mockup Image (Ruang Riset & Ruang Ngonten, Jarak Simetris Presisi 20px) */}
-            <div className="mt-[20px] w-full flex justify-center">
-              <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
-                <Image
-                  src="/cuan-faceless/tools-ajaib-mockup.jpg"
-                  alt="Dilengkapi 2 Tools Ajaib Sekaligus - Ruang Riset dan Ruang Ngonten"
-                  width={1024}
-                  height={576}
-                  className="w-full h-auto object-contain block select-none"
-                />
-              </div>
-            </div>
-          </div>
-
           {/* FAQ Section (Yang Sering Ditanyain) */}
-          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-4">
+          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
             
             {/* Section Heading */}
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
@@ -441,6 +419,28 @@ export default function CuanFacelessLandingPage() {
                 <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
                   Tidak ada jaminan 100% berhasil, tapi kelas private 1 ON 1 ini materinya terbukti. Kita sebagai hamba hanya bisa berusaha dan berdo&apos;a, sisanya tetap di tangan Allah SWT.
                 </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 2 Magic Tools Section (Dilengkapi 2 Tools Ajaib Sekaligus) - Full Width like Hero */}
+          <div className="w-full mt-[20px] mb-4 flex flex-col items-center text-center">
+            
+            {/* Section Heading */}
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center max-w-[460px] mx-auto">
+              Dilengkapi 2 Tools Ajaib Sekaligus
+            </h2>
+
+            {/* Visual Mockup Image (Ruang Riset & Ruang Ngonten - Full Width & Borderless like Hero) */}
+            <div className="mt-[20px] w-full flex justify-center">
+              <div className="w-full overflow-hidden rounded-2xl">
+                <Image
+                  src="/cuan-faceless/tools-ajaib-mockup.jpg"
+                  alt="Dilengkapi 2 Tools Ajaib Sekaligus - Ruang Riset dan Ruang Ngonten"
+                  width={1024}
+                  height={576}
+                  className="w-full h-auto object-contain block select-none"
+                />
               </div>
             </div>
           </div>
