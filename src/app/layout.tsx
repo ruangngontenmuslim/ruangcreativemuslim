@@ -92,7 +92,7 @@ export default async function RootLayout({
           <SWRProvider>
             <ThemeProvider
               attribute="class"
-              defaultTheme="dark"
+              defaultTheme="light"
               enableSystem={false}
               disableTransitionOnChange
             >

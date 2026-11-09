@@ -85,7 +85,7 @@ export function Navbar({ followerCount = "154K", memberCount = "0", userRole = "
       .catch((err) => console.error("Error loading follower count:", err));
   }, []);
 
-  const isDark = mounted ? theme === "dark" : true;
+  const isDark = mounted ? theme === "dark" : false;
   const isWorkspace = pathname === "/" || pathname?.startsWith("/dashboard") || pathname?.startsWith("/ruang-ngonten") || pathname?.startsWith("/ruang-belajar") || pathname?.startsWith("/ruang-automation") || pathname?.startsWith("/ruang-riset") || pathname?.startsWith("/ruang-growing") || pathname?.startsWith("/pengaturan") || pathname?.startsWith("/bantuan") || pathname?.startsWith("/feedback") || pathname?.startsWith("/checkout") || pathname?.startsWith("/login") || pathname?.startsWith("/signup");
   
   const isAdmin = isAdminUser(session?.user ? { email: session.user.email, role: userRole } : null);
