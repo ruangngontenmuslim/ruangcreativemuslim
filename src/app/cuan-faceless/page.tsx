@@ -177,10 +177,10 @@ export default function CuanFacelessLandingPage() {
             <div className="mt-[20px] w-full flex justify-center">
               <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
                 <Image
-                  src="/cuan-faceless/bukti-penghasilan-lynk.jpg"
-                  alt="Bukti omzet penjualan produk digital konten faceless mencapai Rp156 juta di Lynk.id"
-                  width={658}
-                  height={802}
+                  src="/cuan-faceless/bukti-pencapaian-faceless.jpg"
+                  alt="Bukti pencapaian omzet penjualan produk digital konten faceless di Lynk.id"
+                  width={1024}
+                  height={576}
                   className="w-full h-auto object-contain block select-none"
                   priority
                 />
