@@ -45,43 +45,17 @@ export default function CuanFacelessLandingPage() {
             <span className="block">Konten Faceless</span>
           </h1>
 
-          {/* Bonus Card (Mengikuti Style Kotak Soft Accent) */}
-          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-4 mb-2">
-            <div className="w-full p-2.5 sm:p-3 rounded-xl bg-rn-accent/10 dark:bg-rn-accent/20 border border-rn-accent/20 dark:border-rn-accent/35 text-[12.5px] sm:text-[13.5px] text-gray-900 dark:text-orange-100 leading-snug text-center">
-              <strong className="font-bold text-gray-950 dark:text-white">Bonus 8 Tools</strong> untuk Ngonten dan Riset Instagram, TikTok, Facebook, dan YouTube.
-            </div>
-          </div>
-
-          {/* 3 Green Checklist Points (Kompak, Sejajar & Rapi) */}
-          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-2.5 space-y-2 text-left">
-            {/* Point 1 */}
-            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-              <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
-                <Check className="w-3.5 h-3.5 stroke-[3]" />
-              </div>
-              <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                Cocok untuk pemula, bahkan yang gaptek sekalipun.
-              </span>
-            </div>
-
-            {/* Point 2 */}
-            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-              <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
-                <Check className="w-3.5 h-3.5 stroke-[3]" />
-              </div>
-              <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                Potensi cuan hingga <span className="text-emerald-700 dark:text-emerald-400 font-bold">Rp100 ribu per hari</span>.
-              </span>
-            </div>
-
-            {/* Point 3 */}
-            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-              <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
-                <Check className="w-3.5 h-3.5 stroke-[3]" />
-              </div>
-              <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                100% cukup pakai HP dan internet.
-              </span>
+          {/* Hero Visual Mockup (Ebook & Smartphone & Points) */}
+          <div className="mt-4 sm:mt-5 w-full flex justify-center">
+            <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
+              <Image
+                src="/cuan-faceless/hero-mockup-ebook.png"
+                alt="Ruang Ngonten Faceless - Strategi Faceless Creator Ebook & 30 Day Creator Challenge"
+                width={1024}
+                height={576}
+                className="w-full h-auto object-contain block select-none"
+                priority
+              />
             </div>
           </div>
 
