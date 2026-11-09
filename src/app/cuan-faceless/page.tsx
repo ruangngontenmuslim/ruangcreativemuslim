@@ -424,7 +424,7 @@ export default function CuanFacelessLandingPage() {
           </div>
 
           {/* 2 Magic Tools Section (Dilengkapi 2 Tools Ajaib Sekaligus) - Full Width like Hero */}
-          <div className="w-full mt-[20px] mb-4 flex flex-col items-center text-center">
+          <div className="w-full mt-[20px] mb-0 flex flex-col items-center text-center">
             
             {/* Section Heading */}
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center max-w-[460px] mx-auto">
@@ -442,6 +442,58 @@ export default function CuanFacelessLandingPage() {
                   height={576}
                   className="w-full h-auto object-contain block select-none"
                 />
+              </div>
+            </div>
+          </div>
+
+          {/* Urgency / Reasons Section (Kenapa kamu harus segera dapet tutorial ini ?) */}
+          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-4">
+            
+            {/* Section Heading */}
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center max-w-[460px] mx-auto mb-4">
+              Kenapa kamu harus segera dapet tutorial ini ?
+            </h2>
+
+            {/* 4 Reason Checklist Cards */}
+            <div className="space-y-2 text-left">
+              {/* Point 1 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Biar bisa <strong className="text-gray-950 dark:text-white font-bold">ngonten faceless</strong>
+                </span>
+              </div>
+
+              {/* Point 2 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Biar bisa punya <strong className="text-gray-950 dark:text-white font-bold">sistem digital</strong>
+                </span>
+              </div>
+
+              {/* Point 3 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Biar bisa punya <strong className="text-emerald-700 dark:text-emerald-400 font-bold">INCOME tiap hari</strong>
+                </span>
+              </div>
+
+              {/* Point 4 */}
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
+                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
+                  <Check className="w-3.5 h-3.5 stroke-[3]" />
+                </div>
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Biar punya akun sosmed <strong className="text-gray-950 dark:text-white font-bold">produktif</strong>
+                </span>
               </div>
             </div>
           </div>
