@@ -595,7 +595,7 @@ export default function CuanFacelessLandingPage() {
                   </div>
                 </div>
                 <Link
-                  href="/?pricing=true&cat=plus"
+                  href="/?pricing=true&cat=ebook"
                   className="w-full sm:w-auto px-5 py-2.5 rounded-xl font-bold text-sm text-center bg-orange-500 hover:bg-orange-600 text-white shadow-xs transition-all active:scale-[0.98] shrink-0"
                 >
                   Detail Paket
