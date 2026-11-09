@@ -361,6 +361,28 @@ export default function CuanFacelessLandingPage() {
             </div>
           </div>
 
+          {/* 2 Magic Tools Section (Dilengkapi 2 Tools Ajaib Sekaligus) */}
+          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
+            
+            {/* Section Heading */}
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-0">
+              Dilengkapi 2 Tools Ajaib Sekaligus
+            </h2>
+
+            {/* Visual Mockup Image (Ruang Riset & Ruang Ngonten, Jarak Simetris Presisi 20px) */}
+            <div className="mt-[20px] w-full flex justify-center">
+              <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
+                <Image
+                  src="/cuan-faceless/tools-ajaib-mockup.jpg"
+                  alt="Dilengkapi 2 Tools Ajaib Sekaligus - Ruang Riset dan Ruang Ngonten"
+                  width={1024}
+                  height={576}
+                  className="w-full h-auto object-contain block select-none"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* FAQ Section (Yang Sering Ditanyain) */}
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-4">
             
