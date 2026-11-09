@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Check } from "lucide-react";
-import { LightModeLock } from "./LightModeLock";
 import { CuanFacelessNavbar } from "./CuanFacelessNavbar";
 
 export const metadata: Metadata = {
@@ -28,20 +27,19 @@ export const metadata: Metadata = {
 
 export default function CuanFacelessLandingPage() {
   return (
-    <div className="w-full min-h-screen bg-[#EEF2F6] flex justify-center -mt-16 -mb-1 font-sans selection:bg-amber-300 selection:text-gray-950">
-      <LightModeLock />
+    <div className="w-full min-h-screen bg-[#EEF2F6] dark:bg-[#050814] flex justify-center -mt-16 -mb-1 font-sans selection:bg-amber-300 selection:text-gray-950 transition-colors duration-200">
 
       {/* Centered Canvas Container (Lebar Pas ~680px dengan Batas Kiri-Kanan) */}
-      <div className="w-full max-w-[680px] min-h-screen bg-white border-x border-gray-200/90 shadow-[0_0_30px_rgba(0,0,0,0.03)] flex flex-col justify-between">
+      <div className="w-full max-w-[680px] min-h-screen bg-white dark:bg-[#0A1128] border-x border-gray-200/90 dark:border-[#1E2640] shadow-[0_0_30px_rgba(0,0,0,0.03)] dark:shadow-[0_0_40px_rgba(0,0,0,0.5)] flex flex-col justify-between transition-colors duration-200">
         
-        {/* Top Header Inside the Canvas (Bounded Strictly Within 680px Canvas Borders) */}
+        {/* Top Header Inside the Canvas (Sticky & Bounded Strictly Within 680px Canvas Borders) */}
         <CuanFacelessNavbar />
 
         {/* Hero Section Container */}
         <main className="flex-1 w-full px-5 sm:px-8 py-2 flex flex-col items-center text-center">
           
           {/* Main Headline (Harmonized 3-Line Cascade across Mobile & Desktop) */}
-          <h1 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 tracking-tight leading-[1.22] text-center max-w-[460px] mx-auto">
+          <h1 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center max-w-[460px] mx-auto">
             <span className="block">Tutorial Dapat Cuan</span>
             <span className="block">dari Produk Digital Lewat</span>
             <span className="block">Konten Faceless</span>
@@ -49,82 +47,82 @@ export default function CuanFacelessLandingPage() {
 
           {/* Bonus Card (Mengikuti Style Kotak Soft Accent) */}
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-4 mb-2">
-            <div className="w-full p-2.5 sm:p-3 rounded-xl bg-rn-accent/10 border border-rn-accent/20 text-[12.5px] sm:text-[13.5px] text-gray-900 leading-snug text-center">
-              <strong className="font-bold text-gray-950">Bonus 8 Tools</strong> untuk Ngonten dan Riset Instagram, TikTok, Facebook, dan YouTube.
+            <div className="w-full p-2.5 sm:p-3 rounded-xl bg-rn-accent/10 dark:bg-rn-accent/20 border border-rn-accent/20 dark:border-rn-accent/35 text-[12.5px] sm:text-[13.5px] text-gray-900 dark:text-orange-100 leading-snug text-center">
+              <strong className="font-bold text-gray-950 dark:text-white">Bonus 8 Tools</strong> untuk Ngonten dan Riset Instagram, TikTok, Facebook, dan YouTube.
             </div>
           </div>
 
           {/* 3 Green Checklist Points (Kompak, Sejajar & Rapi) */}
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-2.5 space-y-2 text-left">
             {/* Point 1 */}
-            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
               <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
                 <Check className="w-3.5 h-3.5 stroke-[3]" />
               </div>
-              <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
+              <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
                 Cocok untuk pemula, bahkan yang gaptek sekalipun.
               </span>
             </div>
 
             {/* Point 2 */}
-            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
               <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
                 <Check className="w-3.5 h-3.5 stroke-[3]" />
               </div>
-              <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                Potensi cuan hingga <span className="text-emerald-700 font-bold">Rp100 ribu per hari</span>.
+              <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                Potensi cuan hingga <span className="text-emerald-700 dark:text-emerald-400 font-bold">Rp100 ribu per hari</span>.
               </span>
             </div>
 
             {/* Point 3 */}
-            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+            <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
               <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs">
                 <Check className="w-3.5 h-3.5 stroke-[3]" />
               </div>
-              <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
+              <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
                 100% cukup pakai HP dan internet.
               </span>
             </div>
           </div>
 
-          {/* Narrative Story Section (Menyatu Bersih di Canvas Putih) */}
+          {/* Narrative Story Section (Menyatu Bersih di Canvas) */}
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-10 mb-0">
             
             {/* Story Heading (Posisi di Tengah, 2 Baris Terkunci, Ukuran Font Sama dengan Headline Utama) */}
-            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 tracking-tight leading-[1.22] text-center mb-4">
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
               <span className="block">Ceritanya gini,</span>
               <span className="block">teman-teman.</span>
             </h2>
 
             {/* Story Paragraphs */}
-            <div className="space-y-2 text-[14px] sm:text-[15px] text-gray-700 leading-[1.55] text-left">
+            <div className="space-y-2 text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
               <p>Di tahun 2025, kantor saya mulai banyak melakukan PHK. Jujur, saya pun khawatir suatu saat akan mengalami hal yang sama.</p>
               <p>Akhirnya, saya mulai mencari cara menghasilkan uang hanya lewat HP dan dari rumah.</p>
               <p>Saya pun iseng mencoba membuat produk digital dan memasarkannya lewat konten faceless.</p>
-              <p className="font-bold text-gray-950 pt-0.5">Eh, ternyata peluangnya besar banget!</p>
+              <p className="font-bold text-gray-950 dark:text-white pt-0.5">Eh, ternyata peluangnya besar banget!</p>
             </div>
 
             {/* Achievement Highlights (3 Kotak Poin Pencapaian) */}
             <div className="mt-4 text-left">
               <div className="space-y-2">
-                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                   <span className="text-base shrink-0 leading-none mt-0.5">📈</span>
-                  <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                    Akun Instagram dari <strong className="text-gray-950 font-bold">NOL</strong>, sekarang sudah <strong className="text-gray-950 font-bold">162 ribu followers</strong>.
+                  <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                    Akun Instagram dari <strong className="text-gray-950 dark:text-white font-bold">NOL</strong>, sekarang sudah <strong className="text-gray-950 dark:text-white font-bold">162 ribu followers</strong>.
                   </span>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                   <span className="text-base shrink-0 leading-none mt-0.5">🔥</span>
-                  <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                    View yang awalnya sepi, sekarang sering <strong className="text-gray-950 font-bold">VIRAL</strong>.
+                  <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                    View yang awalnya sepi, sekarang sering <strong className="text-gray-950 dark:text-white font-bold">VIRAL</strong>.
                   </span>
                 </div>
 
-                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+                <div className="flex items-start gap-2.5 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                   <span className="text-base shrink-0 leading-none mt-0.5">💰</span>
-                  <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                    Bisa menghasilkan cuan setiap hari, dengan total <strong className="text-emerald-700 font-bold">penghasilan bulanan mencapai 2 digit</strong>.
+                  <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                    Bisa menghasilkan cuan setiap hari, dengan total <strong className="text-emerald-700 dark:text-emerald-400 font-bold">penghasilan bulanan mencapai 2 digit</strong>.
                   </span>
                 </div>
               </div>
@@ -132,14 +130,16 @@ export default function CuanFacelessLandingPage() {
 
             {/* Visual Social Proof (Tanpa Bungkus Kontainer, Jarak Simetris Presisi 20px) */}
             <div className="mt-[20px] w-full flex justify-center">
-              <Image
-                src="/cuan-faceless/bukti-instagram-v2.jpg"
-                alt="Bukti akun Instagram ruangcreativemuslim 162 ribu followers dan konten viral"
-                width={658}
-                height={769}
-                className="w-full h-auto object-contain block select-none"
-                priority
-              />
+              <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
+                <Image
+                  src="/cuan-faceless/bukti-instagram-v2.jpg"
+                  alt="Bukti akun Instagram ruangcreativemuslim 162 ribu followers dan konten viral"
+                  width={658}
+                  height={769}
+                  className="w-full h-auto object-contain block select-none"
+                  priority
+                />
+              </div>
             </div>
           </div>
 
@@ -147,13 +147,13 @@ export default function CuanFacelessLandingPage() {
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
             
             {/* Section Heading (Harmonis dengan Heading Lainnya) */}
-            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 tracking-tight leading-[1.22] text-center mb-4">
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
               <span className="block">Dan dari konten yang</span>
               <span className="block">saya bagikan tersebut</span>
             </h2>
 
             {/* Section Paragraphs */}
-            <div className="space-y-2 text-[14px] sm:text-[15px] text-gray-700 leading-[1.55] text-left">
+            <div className="space-y-2 text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
               <p>
                 Saya juga membuat tutorial cara mendapatkan cuan dari produk digital lewat konten faceless versi saya sendiri.
               </p>
@@ -164,14 +164,16 @@ export default function CuanFacelessLandingPage() {
 
             {/* Visual Testimonial Proof (Tanpa Bungkus Kontainer, Jarak Presisi 20px) */}
             <div className="mt-[20px] w-full flex justify-center">
-              <Image
-                src="/cuan-faceless/bukti-testimoni-member.jpg"
-                alt="Bukti testimoni dan hasil penjualan member tutorial cuan produk digital faceless"
-                width={724}
-                height={868}
-                className="w-full h-auto object-contain block select-none"
-                priority
-              />
+              <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
+                <Image
+                  src="/cuan-faceless/bukti-testimoni-member.jpg"
+                  alt="Bukti testimoni dan hasil penjualan member tutorial cuan produk digital faceless"
+                  width={724}
+                  height={868}
+                  className="w-full h-auto object-contain block select-none"
+                  priority
+                />
+              </div>
             </div>
           </div>
 
@@ -179,12 +181,12 @@ export default function CuanFacelessLandingPage() {
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
             
             {/* Section Heading (Harmonis & Seragam dengan Heading Lainnya) */}
-            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 tracking-tight leading-[1.22] text-center mb-4">
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
               Nah, Kalo Ini...
             </h2>
 
             {/* Section Paragraph (Seragam dengan Body Text Lainnya) */}
-            <div className="text-[14px] sm:text-[15px] text-gray-700 leading-[1.55] text-left">
+            <div className="text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
               <p>
                 Beberapa hasil yang berhasil saya kumpulkan dari bisnis produk digital lewat konten faceless, tanpa perlu menampilkan wajah, hanya dalam beberapa bulan.
               </p>
@@ -192,14 +194,16 @@ export default function CuanFacelessLandingPage() {
 
             {/* Visual Income Proof (Tanpa Bungkus Kontainer, Jarak Presisi 20px) */}
             <div className="mt-[20px] w-full flex justify-center">
-              <Image
-                src="/cuan-faceless/bukti-penghasilan-lynk.jpg"
-                alt="Bukti omzet penjualan produk digital konten faceless mencapai Rp156 juta di Lynk.id"
-                width={658}
-                height={802}
-                className="w-full h-auto object-contain block select-none"
-                priority
-              />
+              <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
+                <Image
+                  src="/cuan-faceless/bukti-penghasilan-lynk.jpg"
+                  alt="Bukti omzet penjualan produk digital konten faceless mencapai Rp156 juta di Lynk.id"
+                  width={658}
+                  height={802}
+                  className="w-full h-auto object-contain block select-none"
+                  priority
+                />
+              </div>
             </div>
           </div>
 
@@ -207,59 +211,59 @@ export default function CuanFacelessLandingPage() {
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-4">
             
             {/* Section Heading */}
-            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 tracking-tight leading-[1.22] text-center mb-4">
+            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
               Yang Kamu Dapetin
             </h2>
 
             {/* 5 Benefit Checklist Cards */}
             <div className="space-y-2 text-left">
               {/* Point 1 */}
-              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
-                <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                  Diajarin dari A-Z ngonten ilustrasi faceless dari <strong className="text-gray-950 font-bold">NOL sampai CUAN</strong>.
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Diajarin dari A-Z ngonten ilustrasi faceless dari <strong className="text-gray-950 dark:text-white font-bold">NOL sampai CUAN</strong>.
                 </span>
               </div>
 
               {/* Point 2 */}
-              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
-                <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                  Diajarin biar akun IG kamu jadi <strong className="text-gray-950 font-bold">mesin penghasil cuan</strong>.
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Diajarin biar akun IG kamu jadi <strong className="text-gray-950 dark:text-white font-bold">mesin penghasil cuan</strong>.
                 </span>
               </div>
 
               {/* Point 3 */}
-              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
-                <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                  Diajarin agar konten kamu viewsnya tembus <strong className="text-emerald-700 font-bold">10 RB ++</strong>.
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Diajarin agar konten kamu viewsnya tembus <strong className="text-emerald-700 dark:text-emerald-400 font-bold">10 RB ++</strong>.
                 </span>
               </div>
 
               {/* Point 4 */}
-              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
-                <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                  Diajarin cara buat konten <strong className="text-gray-950 font-bold">tanpa nunjukin wajah</strong>.
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Diajarin cara buat konten <strong className="text-gray-950 dark:text-white font-bold">tanpa nunjukin wajah</strong>.
                 </span>
               </div>
 
               {/* Point 5 */}
-              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 border border-gray-200/80 shadow-xs">
+              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
-                <span className="text-[13px] sm:text-[14px] text-gray-800 font-medium leading-snug">
-                  Diajarin pakai sistem <strong className="text-gray-950 font-bold">OTOMATISASI</strong> biar kamu lagi apapun dan dimanapun cuan masuk terus.
+                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
+                  Diajarin pakai sistem <strong className="text-gray-950 dark:text-white font-bold">OTOMATISASI</strong> biar kamu lagi apapun dan dimanapun cuan masuk terus.
                 </span>
               </div>
             </div>
@@ -268,29 +272,29 @@ export default function CuanFacelessLandingPage() {
         </main>
 
         {/* Bottom Footer Inside the Canvas */}
-        <footer className="w-full pb-6 pt-3 sm:pt-4 flex flex-col items-center justify-center gap-1 text-xs text-gray-500 bg-white">
+        <footer className="w-full pb-6 pt-3 sm:pt-4 flex flex-col items-center justify-center gap-1 text-xs text-gray-500 dark:text-gray-400 bg-white dark:bg-[#0A1128] transition-colors duration-200">
           <div className="flex items-center gap-1.5">
             <span>Product by</span>
             <a
               href="https://www.instagram.com/ruangcreativemuslim/"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-bold text-gray-900 hover:text-emerald-600 transition-colors"
+              className="font-bold text-gray-900 dark:text-white hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors"
             >
               ruangcreativemuslim
             </a>
           </div>
-          <div className="flex items-center gap-2 text-[11px] text-gray-400">
+          <div className="flex items-center gap-2 text-[11px] text-gray-400 dark:text-gray-500">
             <Link
               href="/kebijakan-privasi"
-              className="hover:underline hover:text-gray-600 transition-colors"
+              className="hover:underline hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
             >
               Kebijakan Privasi
             </Link>
             <span>•</span>
             <Link
               href="/syarat-ketentuan"
-              className="hover:underline hover:text-gray-600 transition-colors"
+              className="hover:underline hover:text-gray-600 dark:hover:text-gray-300 transition-colors"
             >
               Syarat &amp; Ketentuan
             </Link>

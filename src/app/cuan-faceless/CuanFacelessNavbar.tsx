@@ -18,11 +18,11 @@ export function CuanFacelessNavbar() {
   const isDark = mounted ? theme === "dark" : false;
 
   return (
-    <header className="w-full px-5 sm:px-8 pt-4 sm:pt-5 pb-2 sm:pb-3 flex items-center justify-between bg-white select-none">
+    <header className="sticky top-0 z-40 w-full px-5 sm:px-8 pt-4 pb-3 flex items-center justify-between bg-white/90 dark:bg-[#0A1128]/90 backdrop-blur-md transition-colors duration-200 select-none">
       {/* Brand Logo on the Left */}
       <Link
         href="/"
-        className="font-bold font-heading text-[15px] sm:text-[16px] tracking-tight text-gray-900 hover:text-orange-500 transition-colors"
+        className="font-bold font-heading text-[15px] sm:text-[16px] tracking-tight text-gray-900 dark:text-white hover:text-orange-500 dark:hover:text-orange-400 transition-colors"
       >
         ruangcreativemuslim
       </Link>
@@ -31,18 +31,18 @@ export function CuanFacelessNavbar() {
       <div className="flex items-center gap-2.5 sm:gap-3.5">
         <button
           onClick={() => setTheme(isDark ? "light" : "dark")}
-          className="p-1.5 text-gray-400 hover:text-orange-500 transition-colors rounded-lg"
+          className="p-1.5 text-gray-400 hover:text-orange-500 dark:hover:text-orange-400 transition-colors rounded-lg"
           aria-label="Toggle Light/Dark Theme"
         >
           {isDark ? (
-            <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-amber-500" />
+            <Sun className="w-4 h-4 sm:w-5 sm:h-5 text-amber-400" />
           ) : (
             <Moon className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500 hover:text-orange-500" />
           )}
         </button>
 
         {status === "loading" ? (
-          <div className="w-16 h-8 bg-gray-100 rounded-lg sm:rounded-xl animate-pulse" />
+          <div className="w-16 h-8 bg-gray-100 dark:bg-white/10 rounded-lg sm:rounded-xl animate-pulse" />
         ) : session ? (
           <Link
             href="/dashboard"
