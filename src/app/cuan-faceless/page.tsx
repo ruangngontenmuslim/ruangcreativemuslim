@@ -125,32 +125,33 @@ export default function CuanFacelessLandingPage() {
           </div>
 
           {/* Tutorial Creation & Social Response Section (Jarak Simetris Presisi 20px dari Bawah Gambar) */}
-          <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
+          <div className="w-full mt-[20px] mb-0 flex flex-col items-center">
             
-            {/* Section Heading (Harmonis dengan Heading Lainnya) */}
-            <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
-              <span className="block">Dan dari konten yang</span>
-              <span className="block">saya bagikan tersebut</span>
-            </h2>
+            {/* Section Heading & Text Container (Tersusun Rapi di Tengah) */}
+            <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto text-center">
+              <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] mb-4">
+                <span className="block">Dan dari konten yang</span>
+                <span className="block">saya bagikan tersebut</span>
+              </h2>
 
-            {/* Section Paragraphs */}
-            <div className="space-y-2 text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
-              <p>
-                Saya juga membuat tutorial cara mendapatkan cuan dari produk digital lewat konten faceless versi saya sendiri.
-              </p>
-              <p>
-                Alhamdulillah, qadarullah, ternyata banyak yang memberikan respons positif dan mulai merasakan hasilnya juga.
-              </p>
+              <div className="space-y-2 text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-[1.55] text-left">
+                <p>
+                  Saya juga membuat tutorial cara mendapatkan cuan dari produk digital lewat konten faceless versi saya sendiri.
+                </p>
+                <p>
+                  Alhamdulillah, qadarullah, ternyata banyak yang memberikan respons positif dan mulai merasakan hasilnya juga.
+                </p>
+              </div>
             </div>
 
-            {/* Visual Testimonial Proof (Tanpa Bungkus Kontainer, Jarak Presisi 20px) */}
+            {/* Visual Testimonial Proof (Full Width Selebar Canvas Seperti Hero & Tools Ajaib) */}
             <div className="mt-[20px] w-full flex justify-center">
               <div className="w-full overflow-hidden rounded-2xl dark:ring-1 dark:ring-white/15">
                 <Image
                   src="/cuan-faceless/bukti-testimoni-member.jpg"
                   alt="Bukti testimoni dan hasil penjualan member tutorial cuan produk digital faceless"
-                  width={724}
-                  height={868}
+                  width={1024}
+                  height={576}
                   className="w-full h-auto object-contain block select-none"
                   priority
                 />
