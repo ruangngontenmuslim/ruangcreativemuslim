@@ -4,7 +4,15 @@ import React, { useState, useEffect } from "react";
 import { ClawdPromoVisual } from "@/components/ui/ClawdLoadingVisuals";
 import { Flame } from "lucide-react";
 
-const STORAGE_KEY = "cuan_faceless_promo_deadline_v2";
+const STORAGE_KEY = "cuan_faceless_promo_deadline_v3";
+
+function createFreshDeadline(): number {
+  // Target: Besok malam pukul 23:59:59 (Evergreen 24-48 jam loop)
+  const target = new Date();
+  target.setDate(target.getDate() + 1);
+  target.setHours(23, 59, 59, 999);
+  return target.getTime();
+}
 
 function getDeadline(): number {
   if (typeof window === "undefined") return Date.now() + 86400000;
@@ -16,12 +24,9 @@ function getDeadline(): number {
         return val;
       }
     }
-    // Target: Besok malam pukul 23:59:59
-    const target = new Date();
-    target.setDate(target.getDate() + 1);
-    target.setHours(23, 59, 59, 999);
-    localStorage.setItem(STORAGE_KEY, target.getTime().toString());
-    return target.getTime();
+    const fresh = createFreshDeadline();
+    localStorage.setItem(STORAGE_KEY, fresh.toString());
+    return fresh;
   } catch {
     return Date.now() + 86400000;
   }
@@ -37,10 +42,23 @@ export function ClawdPromoCallout() {
 
   useEffect(() => {
     setMounted(true);
-    const deadline = getDeadline();
+    let deadline = getDeadline();
 
     const update = () => {
-      const diff = Math.max(0, deadline - Date.now());
+      let diff = deadline - Date.now();
+
+      // Evergreen Auto-Loop: jika timer menyentuh 0 atau habis,
+      // otomatis memperbarui siklus promo baru tanpa pernah berhenti di 00:00:00!
+      if (diff <= 0) {
+        deadline = createFreshDeadline();
+        try {
+          localStorage.setItem(STORAGE_KEY, deadline.toString());
+        } catch {
+          // ignore
+        }
+        diff = Math.max(1000, deadline - Date.now());
+      }
+
       const totalSec = Math.floor(diff / 1000);
       const hours = Math.floor(totalSec / 3600);
       const minutes = Math.floor((totalSec % 3600) / 60);
