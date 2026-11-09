@@ -65,7 +65,7 @@ export default function CuanFacelessLandingPage() {
             {/* Story Heading (Posisi di Tengah, 2 Baris Terkunci, Ukuran Font Sama dengan Headline Utama) */}
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
               <span className="block">Ceritanya gini,</span>
-              <span className="block">teman-teman.</span>
+              <span className="block">teman-teman</span>
             </h2>
 
             {/* Story Paragraphs */}
@@ -428,7 +428,8 @@ export default function CuanFacelessLandingPage() {
             
             {/* Section Heading */}
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center max-w-[460px] mx-auto">
-              Dilengkapi 2 Tools Ajaib Sekaligus
+              <span className="block">Dilengkapi 2 Tools</span>
+              <span className="block">Ajaib Sekaligus</span>
             </h2>
 
             {/* Visual Mockup Image (Ruang Riset & Ruang Ngonten - Full Width & Borderless like Hero) */}
