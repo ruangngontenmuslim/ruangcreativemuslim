@@ -178,7 +178,7 @@ Di Mode B (atau saat memproduksi teks [NASKAH]), Anda WAJIB mematuhi 5 aturan co
 [ATURAN SYARIAT ISLAM & KEPATUHAN VISUAL (JIKA DIAKTIFKAN ATAU DIMINTA USER)]
 Untuk field "GEN AI PROMPT" (yang ditulis dalam bahasa Inggris):
 1. HIJAB/CADAR: JIKA karakter wanita muslim dewasa, deskripsikan pakaian longgar tertutup dan hijab/cadar sesuai konfigurasi.
-2. FACELESS (TANPA WAJAH): JIKA konfigurasi meminta Faceless (atau karakter makhluk bernyawa), WAJIB MUTLAK digambarkan TANPA FITUR WAJAH SAMA SEKALI. Dilarang menggambar mata, hidung, atau mulut. Wajah harus rata dan mulus. Tambahkan instruksi paksa dalam bahasa Inggris pada prompt visual di SETIAP SLIDE: "(EXTREMELY STRICT RULE: completely faceless, absolutely NO EYES, NO NOSE, NO MOUTH, NO LIPS on any human, child, baby, doll, animal, or any living creature characters. The face MUST be completely blank and smooth. Character can face any direction dynamically. Negative prompt: eyes, nose, mouth, lips, facial features, face, smile, expression)"
+2. FACELESS (TANPA WAJAH): JIKA konfigurasi meminta Faceless (atau karakter makhluk bernyawa), WAJIB MUTLAK digambarkan TANPA FITUR WAJAH SAMA SEKALI. Dilarang menggambar mata, hidung, atau mulut. Wajah harus rata dan mulus. WAJIB TAMBAHKAN kalimat aturan berikut SECARA PERSIS pada field "* GEN AI PROMPT:" di SETIAP SLIDE: "(EXTREMELY STRICT RULE: completely faceless, absolutely NO EYES, NO NOSE, NO MOUTH, NO LIPS on any human, child, baby, doll, animal, or any living creature characters. The face MUST be completely blank and smooth. Character can face any direction dynamically. Negative prompt: eyes, nose, mouth, lips, facial features, face, smile, expression)"
 3. ANTI-HALUSINASI TEKS PADA OBJEK: Di SETIAP SLIDE sematkan kalimat: "Do not add any text to the objects in the image other than what is explicitly instructed by the prompt."
 4. ASPECT RATIO: Wajib akhiri dengan "Make the aspect ratio 3:4".
 5. PROMPT ANCHORING: Base Visual Anchor (Style Art, Karakter, Pakaian, Palet Warna, Pencahayaan, Typography) WAJIB disalin identik di SETIAP SLIDE agar tidak berubah-ubah karakternya.
@@ -221,7 +221,7 @@ Untuk field "GEN AI PROMPT" (yang ditulis dalam bahasa Inggris):
 [SPECS]
 * SLIDE: 1 dari [Jumlah Slide] (HOOK)
 * VISUAL GUIDE: [Deskripsi visual adegan slide 1 dalam bahasa Indonesia]
-* GEN AI PROMPT: [Prompt visual komprehensif BAHASA INGGRIS. Masukkan SELURUH Base Anchor Visual secara LENGKAP. Harus ada "Make the aspect ratio 3:4". WAJIB TAMBAHKAN KALIMAT: "Do not add any text to the objects in the image other than what is explicitly instructed by the prompt."]
+* GEN AI PROMPT: [Prompt visual komprehensif BAHASA INGGRIS. Masukkan SELURUH Base Anchor Visual secara LENGKAP. JIKA konfigurasi Faceless, WAJIB SERTAKAN: "(EXTREMELY STRICT RULE: completely faceless, absolutely NO EYES, NO NOSE, NO MOUTH, NO LIPS on any human, child, baby, doll, animal, or any living creature characters. The face MUST be completely blank and smooth. Character can face any direction dynamically. Negative prompt: eyes, nose, mouth, lips, facial features, face, smile, expression)". Harus ada "Make the aspect ratio 3:4". WAJIB TAMBAHKAN KALIMAT: "Do not add any text to the objects in the image other than what is explicitly instructed by the prompt."]
 
 [NASKAH]
 * HEADER: [Headline Cover yang Stop-the-Scroll, Memuat Konteks Masalah + Urgensi/Emosi]
@@ -234,7 +234,7 @@ Untuk field "GEN AI PROMPT" (yang ditulis dalam bahasa Inggris):
 [SPECS]
 * SLIDE: [Nomor] dari [Jumlah Slide]
 * VISUAL GUIDE: [Deskripsi visual - HARUS konsisten dengan slide 1]
-* GEN AI PROMPT: [Prompt komprehensif INGGRIS. WAJIB COPY-PASTE Base Anchor Visual secara 100% IDENTIK dari slide 1 + Ubah Aksi/Pose khusus slide ini. Harus ada "Make the aspect ratio 3:4". WAJIB TAMBAHKAN KALIMAT: "Do not add any text to the objects in the image other than what is explicitly instructed by the prompt."]
+* GEN AI PROMPT: [Prompt komprehensif INGGRIS. WAJIB COPY-PASTE Base Anchor Visual secara 100% IDENTIK dari slide 1 + Ubah Aksi/Pose khusus slide ini. JIKA konfigurasi Faceless, WAJIB SERTAKAN: "(EXTREMELY STRICT RULE: completely faceless, absolutely NO EYES, NO NOSE, NO MOUTH, NO LIPS on any human, child, baby, doll, animal, or any living creature characters. The face MUST be completely blank and smooth. Character can face any direction dynamically. Negative prompt: eyes, nose, mouth, lips, facial features, face, smile, expression)". Harus ada "Make the aspect ratio 3:4". WAJIB TAMBAHKAN KALIMAT: "Do not add any text to the objects in the image other than what is explicitly instructed by the prompt."]
 
 [NASKAH]
 * HEADER: [Sub-Headline yang Provokatif / Deskriptif / Langkah Bernomor Taktis]
@@ -291,6 +291,44 @@ Untuk field "GEN AI PROMPT" (yang ditulis dalam bahasa Inggris):
       systemPrompt,
       responseMimeType: 'application/json',
     });
+
+    const FACELESS_RULE = "(EXTREMELY STRICT RULE: completely faceless, absolutely NO EYES, NO NOSE, NO MOUTH, NO LIPS on any human, child, baby, doll, animal, or any living creature characters. The face MUST be completely blank and smooth. Character can face any direction dynamically. Negative prompt: eyes, nose, mouth, lips, facial features, face, smile, expression)";
+
+    const isFaceless =
+      currentInput?.toLowerCase()?.includes("faceless") ||
+      currentInput?.toLowerCase()?.includes("tanpa wajah") ||
+      chatHistory?.some(
+        (m: any) =>
+          typeof m?.content === "string" &&
+          (m.content.toLowerCase().includes("faceless") ||
+            m.content.toLowerCase().includes("tanpa wajah"))
+      );
+
+    if (isFaceless && Array.isArray(data?.prompt_blocks)) {
+      data.prompt_blocks = data.prompt_blocks.map((block: any) => {
+        if (typeof block?.content !== "string") return block;
+        let content = block.content;
+
+        const promptRegex = /(\*\s*GEN AI PROMPT:\s*)([^\n]+)/i;
+        const match = content.match(promptRegex);
+        if (match) {
+          const prefix = match[1];
+          let pText = match[2].trim();
+
+          if (!pText.includes("completely faceless, absolutely NO EYES")) {
+            if (pText.includes("Do not add any text")) {
+              pText = pText.replace("Do not add any text", `${FACELESS_RULE} Do not add any text`);
+            } else if (pText.includes("Make the aspect ratio")) {
+              pText = pText.replace("Make the aspect ratio", `${FACELESS_RULE} Make the aspect ratio`);
+            } else {
+              pText = `${pText} ${FACELESS_RULE}`;
+            }
+            content = content.replace(match[0], `${prefix}${pText}`);
+          }
+        }
+        return { ...block, content };
+      });
+    }
 
     if (data?.response_type === "cp_result" && accessCheck.featureId) {
       await incrementFeatureUsage(session.user.id, accessCheck.featureId);
