@@ -91,7 +91,12 @@ export function Navbar({ followerCount = "154K", memberCount = "0", userRole = "
   const isAdmin = isAdminUser(session?.user ? { email: session.user.email, role: userRole } : null);
   const isPro = badgeName !== "FREE";
 
-  if (pathname === "/cuan-faceless" || pathname?.startsWith("/cuan-faceless")) {
+  if (
+    pathname === "/cuan-faceless" ||
+    pathname?.startsWith("/cuan-faceless") ||
+    pathname === "/tools-riset" ||
+    pathname?.startsWith("/tools-riset")
+  ) {
     return null;
   }
 

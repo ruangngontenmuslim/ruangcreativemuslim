@@ -14,13 +14,17 @@ export function Footer() {
     setMounted(true);
   }, []);
 
-  const isCuanFaceless = pathname === "/cuan-faceless" || pathname?.startsWith("/cuan-faceless");
-  if (isCuanFaceless) return null;
+  const isStandaloneLandingPage =
+    pathname === "/cuan-faceless" ||
+    pathname?.startsWith("/cuan-faceless") ||
+    pathname === "/tools-riset" ||
+    pathname?.startsWith("/tools-riset");
+  if (isStandaloneLandingPage) return null;
 
   const isDark = mounted ? theme === "dark" : true;
 
   return (
-    <footer className={`w-full flex flex-col items-center justify-center mt-auto gap-0.5 sm:gap-1 shrink-0 ${isCuanFaceless ? "bg-white py-6" : "pt-1 pb-2 sm:pb-3 xl:pb-3"}`}>
+    <footer className="w-full flex flex-col items-center justify-center mt-auto gap-0.5 sm:gap-1 shrink-0 pt-1 pb-2 sm:pb-3 xl:pb-3">
       <div className="text-gray-500 text-xs flex items-center gap-2">
         Product by
         <a
