@@ -253,6 +253,19 @@ export default function DashboardClient({
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [waMessage, setWaMessage] = useState("");
   const [waOrder, setWaOrder] = useState<any>(null);
+  const [waMode, setWaMode] = useState<"whatsapp" | "email">("whatsapp");
+
+  const handleHistoryUpdated = (orderId: string, updatedHistory: any[]) => {
+    setWaOrder((prev: any) =>
+      prev && prev.id === orderId ? { ...prev, followUpHistory: updatedHistory } : prev
+    );
+    setSelectedOrder((prev: any) =>
+      prev && prev.id === orderId ? { ...prev, followUpHistory: updatedHistory } : prev
+    );
+    setServerOrders((prev: any[]) =>
+      prev.map((o) => (o.id === orderId ? { ...o, followUpHistory: updatedHistory } : o))
+    );
+  };
 
   React.useEffect(() => {
     if (serverOrders.length === 0) {
@@ -440,6 +453,9 @@ export default function DashboardClient({
             formatIDR={formatIDR}
             getOrderImage={getOrderImage}
             getOrderTitle={getOrderTitle}
+            waMode={waMode}
+            setWaMode={setWaMode}
+            onHistoryUpdated={handleHistoryUpdated}
           />
         )}
 
@@ -503,6 +519,10 @@ export default function DashboardClient({
             order={waOrder}
             message={waMessage}
             setMessage={setWaMessage}
+            initialMode={waMode}
+            productTitle={waOrder ? getOrderTitle(waOrder) : "Produk Digital"}
+            productImage={waOrder ? getOrderImage(waOrder) : undefined}
+            onHistoryUpdated={handleHistoryUpdated}
           />
         )}
       </div>

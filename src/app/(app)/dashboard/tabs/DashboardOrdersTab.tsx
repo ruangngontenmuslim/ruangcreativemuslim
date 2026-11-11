@@ -2,7 +2,7 @@
 
 import React from "react";
 import { format } from "date-fns";
-import { User, ShoppingBag, Settings, Search, Download, Printer, X, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react";
+import { User, ShoppingBag, Settings, Search, Download, Printer, X, ChevronLeft, ChevronRight, ChevronDown, Mail, MessageSquare } from "lucide-react";
 import { getDashboardOrdersAction } from "@/app/actions/dashboard";
 import CustomSelect from "@/components/ui/CustomSelect";
 import { Pagination } from "@/components/ui/Pagination";
@@ -31,6 +31,9 @@ interface DashboardOrdersTabProps {
   formatIDR: (num: number) => string;
   getOrderImage: (order: any) => string;
   getOrderTitle: (order: any) => string;
+  waMode?: "whatsapp" | "email";
+  setWaMode?: (val: "whatsapp" | "email") => void;
+  onHistoryUpdated?: (orderId: string, updatedHistory: any[]) => void;
 }
 
 export function DashboardOrdersTab({
@@ -55,6 +58,9 @@ export function DashboardOrdersTab({
   formatIDR,
   getOrderImage,
   getOrderTitle,
+  waMode,
+  setWaMode,
+  onHistoryUpdated,
 }: DashboardOrdersTabProps) {
   const handleExportExcel = async () => {
     setIsLoadingOrders(true);
@@ -382,18 +388,35 @@ export function DashboardOrdersTab({
           <div className="bg-white dark:bg-[#141B31] sm:rounded-xl p-5 border-y sm:border border-gray-200 dark:border-[#2C3246] shadow-sm">
             <h4 className="font-bold text-gray-900 dark:text-white mb-3">Customer</h4>
             <div className="space-y-1.5 text-sm text-gray-800 dark:text-gray-300">
-              <p>{order.user?.name || "Unknown User"}</p>
-              <p>{order.user?.email || "-"}</p>
-              <a
-                href={`https://wa.me/${(order.user?.phone || "085156339329")
-                  .replace(/\D/g, "")
-                  .replace(/^0/, "62")}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-orange-500 font-medium hover:underline mt-1"
-              >
-                {order.user?.phone || "085156339329"}
-              </a>
+              <p className="font-semibold text-gray-900 dark:text-white">{order.user?.name || "Unknown User"}</p>
+              <p className="text-gray-600 dark:text-gray-400">{order.user?.email || "-"}</p>
+              {(() => {
+                const rawPhone = order.user?.phone || order.customerPhone || "";
+                const cleanPhone = rawPhone.replace(/\D/g, "");
+                if (cleanPhone && cleanPhone.length >= 9) {
+                  const intlPhone = cleanPhone.startsWith("0")
+                    ? "62" + cleanPhone.substring(1)
+                    : cleanPhone.startsWith("62")
+                    ? cleanPhone
+                    : "62" + cleanPhone;
+                  return (
+                    <a
+                      href={`https://wa.me/${intlPhone}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-orange-500 font-medium hover:underline mt-1"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5" />
+                      +{intlPhone}
+                    </a>
+                  );
+                }
+                return (
+                  <span className="inline-block text-xs text-gray-400 dark:text-gray-500 italic mt-1">
+                    Tidak ada No. WA
+                  </span>
+                );
+              })()}
             </div>
           </div>
 
@@ -435,38 +458,146 @@ export function DashboardOrdersTab({
           </div>
 
           {/* Box 5: Follow Up Text */}
-          <div className="bg-white dark:bg-[#141B31] sm:rounded-xl p-5 border-y sm:border border-gray-200 dark:border-[#2C3246] shadow-sm print:hidden">
-            <div className="flex justify-between items-center mb-4">
-              <h4 className="font-bold text-gray-900 dark:text-white text-lg">
-                Follow Up Text
-              </h4>
-              <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
-                <Settings className="w-5 h-5" />
-              </button>
-            </div>
+          {(() => {
+            const rawPhone = order.user?.phone || order.customerPhone || "";
+            const cleanPhone = rawPhone.replace(/\D/g, "");
+            const hasPhone = Boolean(cleanPhone && cleanPhone.length >= 9);
 
-            <button
-              onClick={() => {
-                const name = order.user?.name || "Kak";
-                const product = order.product?.title || "Produk";
-                setWaMessage(
-                  `Halo ${name},\n\nTerima kasih sudah memesan *${product}*.\n\nApakah ada yang bisa kami bantu terkait pesanan ini?`
-                );
-                setWaOrder(order);
-                setIsWaModalOpen(true);
-              }}
-              className="w-full py-3 mb-6 border-2 border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white rounded-xl font-bold transition-colors"
-            >
-              Send Follow Up Text via WhatsApp
-            </button>
+            const handleOpenFollowUp = (mode: "whatsapp" | "email") => {
+              const name = order.user?.name || "Kak";
+              const productTitle = getOrderTitle(order) || "Produk Digital";
+              const orderTotal = formatIDR(order.amount || 0);
+              const orderNumber = order.id ? `#${order.id.slice(-6).toUpperCase()}` : "-";
+              const isFree =
+                order.amount === 0 ||
+                order.paymentMethod === "FREE_CLAIM" ||
+                order.product?.accessLevel === "FREE" ||
+                order.product?.price === 0;
 
-            <div>
-              <p className="text-gray-700 dark:text-gray-300 font-medium mb-2">
-                Sending History
-              </p>
-              <p className="text-gray-500 dark:text-gray-400 text-sm">No history yet</p>
-            </div>
-          </div>
+              let followUpText = "";
+
+              if (isFree) {
+                followUpText = `Halo Kak ${name}, salam kenal dari Ruang Creative Muslim 🙏\n\nTerima kasih sudah download *${productTitle}* ya! Apakah filenya sudah berhasil dibuka dengan lancar di HP/laptop Kakak?\n\nOiya kak, materi gratis tadi adalah pengenalan dasarnya. Kalau Kak ${name} ingin langsung praktek hasilin cuan tanpa pusing bikin produk & konten dari nol, kami punya *3 Paket Ebook Pro (Sekali Bayar, Akses Selamanya)* yang lagi diskon 95%:\n\n📘 *1. Paket Basic (Rp 99rb)*\nFokus belajar dari nol + Ebook Ruang Ngonten & 30 Day Challenge + *Bimbingan WA 6 Bulan* + *Akses 8 Juta+ Produk Digital (Bisa Dijual)*.\n\n🚀 *2. Paket PLR (Rp 149rb)*\nSemua isi Basic + *Ebook Utama & Faceless Master BISA DIJUAL ULANG (100% untung milik Kakak)* + Tools Voice Over + Video Footage Siap Pakai + *Bimbingan WA Selamanya (Lifetime)*.\n\n👑 *3. Paket Plus (Rp 199rb) — Paling Lengkap!*\nDapat SEMUA isi Paket PLR di atas + langsung dapat akses *Tools AI Ngonten (30 Hari)* & *Tools Riset Viral IG, TikTok, YT, FB (30 Hari)*.\n\nBoleh diintip dulu detail lengkapnya di sini ya kak:\n👉 https://ruangcreativemuslim.com/?pricing=true&cat=ebook\n\n_(Pelajari dulu saja materi gratisnya ya kak, tidak ada paksaan sama sekali. Kalau tertarik atau mau tanya-tanya paket mana yang paling pas buat Kakak, balas chat ini saja ya!)_ 😊`;
+              } else if (order.status === "PENDING") {
+                const paymentUrl =
+                  order.paymentUrl ||
+                  (order.orderType
+                    ? `https://ruangcreativemuslim.com/checkout?type=${order.orderType}`
+                    : `https://ruangcreativemuslim.com/?pricing=true&cat=ebook`);
+                followUpText = `Halo Kak ${name}, salam kenal dari Ruang Creative Muslim 🙏\n\nAdmin mau konfirmasi pesanan Kakak yang baru saja dibuat:\n\n📦 *Produk:* ${productTitle}\n💳 *Total:* ${orderTotal}\n🧾 *ID Pesanan:* ${orderNumber}\n\nTadi kami lihat statusnya masih menunggu pembayaran. Barangkali tadi sempat ada kendala saat buka QRIS / metode pembayarannya kak? 😊\n\nKalau mau langsung dilanjutkan biar akses materinya aktif hari ini, bisa klik link pesanan Kakak di sini ya:\n👉 ${paymentUrl}\n\n_(Santai saja ya kak, kalau ada yang masih bingung atau mau ditanyakan dulu seputar isi produknya sebelum bayar, balas chat ini saja ya, admin siap bantu)_ 🙏`;
+              } else if (order.status === "FAILED" || order.status === "EXPIRED") {
+                followUpText = `Halo Kak ${name}, semoga harinya menyenangkan ya 🙏\n\nSekadar mengabarkan kak, untuk pesanan:\n📦 *${productTitle}* (${orderTotal})\n\nSaat ini link pembayarannya sudah *otomatis kadaluarsa (expired)* karena melewati batas waktu sistem.\n\nBarangkali kemarin Kak ${name} lagi sibuk sehingga terlewat, atau masih ada yang bikin ragu dan ingin ditanyakan dulu seputar materinya? Boleh banget cerita ke admin ya kak 😊\n\nKalau Kakak masih berminat mengamankan harga promonya, tinggal balas chat ini saja ya, nanti admin bantu buatkan link baru.\n\nTapi kalau belum jadi ambil untuk sekarang, tidak apa-apa sama sekali kak. Terima kasih sudah mampir di Ruang Creative Muslim ya! ✨`;
+              } else {
+                followUpText = `Halo Kak ${name},\n\nTerima kasih sudah memesan *${productTitle}*.\n\nApakah ada yang bisa kami bantu terkait pesanan ini?`;
+              }
+
+              setWaMessage(followUpText);
+              setWaOrder(order);
+              if (setWaMode) setWaMode(mode);
+              setIsWaModalOpen(true);
+            };
+
+            return (
+              <div className="bg-white dark:bg-[#141B31] sm:rounded-xl p-5 border-y sm:border border-gray-200 dark:border-[#2C3246] shadow-sm print:hidden">
+                <div className="flex justify-between items-center mb-4">
+                  <h4 className="font-bold text-gray-900 dark:text-white text-lg">
+                    Follow Up Text
+                  </h4>
+                  <button className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+                    <Settings className="w-5 h-5" />
+                  </button>
+                </div>
+
+                {hasPhone ? (
+                  <button
+                    onClick={() => handleOpenFollowUp("whatsapp")}
+                    className="w-full py-3 mb-5 border-2 border-emerald-500 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
+                  >
+                    <MessageSquare className="w-4 h-4" />
+                    <span>Send Follow Up Text via WhatsApp</span>
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleOpenFollowUp("email")}
+                    className="w-full py-3 mb-5 border-2 border-blue-500 text-blue-600 dark:text-blue-400 hover:bg-blue-500 hover:text-white rounded-xl font-bold transition-all flex items-center justify-center gap-2 shadow-xs active:scale-[0.99]"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span>Send Follow Up Text via Email</span>
+                  </button>
+                )}
+
+                <div>
+                  <div className="flex items-center justify-between mb-2.5">
+                    <p className="text-gray-700 dark:text-gray-300 font-medium text-sm">
+                      Sending History
+                    </p>
+                    {Array.isArray(order.followUpHistory) &&
+                      order.followUpHistory.length > 0 && (
+                        <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-orange-100 text-orange-600 dark:bg-orange-500/20 dark:text-orange-400">
+                          {order.followUpHistory.length}x Terkirim
+                        </span>
+                      )}
+                  </div>
+
+                  {Array.isArray(order.followUpHistory) &&
+                  order.followUpHistory.length > 0 ? (
+                    <div className="space-y-2 max-h-52 overflow-y-auto pr-1">
+                      {order.followUpHistory.map((item: any, idx: number) => {
+                        const isWa = item.type === "whatsapp";
+                        let formattedDate = "";
+                        try {
+                          formattedDate = format(
+                            new Date(item.timestamp),
+                            "dd MMM - HH:mm"
+                          );
+                        } catch {
+                          formattedDate = item.timestamp || "";
+                        }
+
+                        return (
+                          <div
+                            key={item.id || idx}
+                            className="flex items-center justify-between p-2.5 rounded-xl bg-gray-50 dark:bg-[#0A1128] border border-gray-100 dark:border-[#2C3246] text-xs"
+                          >
+                            <div className="flex items-center gap-2 min-w-0">
+                              <span
+                                className={`p-1.5 rounded-lg shrink-0 ${
+                                  isWa
+                                    ? "bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400"
+                                    : "bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400"
+                                }`}
+                              >
+                                {isWa ? (
+                                  <MessageSquare className="w-3.5 h-3.5" />
+                                ) : (
+                                  <Mail className="w-3.5 h-3.5" />
+                                )}
+                              </span>
+                              <div className="min-w-0">
+                                <p className="font-bold text-gray-800 dark:text-gray-200">
+                                  {isWa ? "Via WhatsApp" : "Via Email"}
+                                </p>
+                                <p className="text-[11px] text-gray-500 dark:text-gray-400 font-mono truncate">
+                                  {item.target}
+                                </p>
+                              </div>
+                            </div>
+                            <span className="text-[11px] text-gray-400 dark:text-gray-500 shrink-0 ml-2 font-medium">
+                              {formattedDate}
+                            </span>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  ) : (
+                    <p className="text-gray-400 dark:text-gray-500 text-xs italic">
+                      No history yet
+                    </p>
+                  )}
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </div>
     );

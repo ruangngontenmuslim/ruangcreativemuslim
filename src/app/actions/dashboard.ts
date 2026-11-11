@@ -3,6 +3,7 @@ import { auth } from "@/auth";
 import prisma from "@/lib/prisma";
 import { unstable_cache, revalidatePath, revalidateTag } from "next/cache";
 import { attachLightweightCovers } from "@/lib/ebook-covers";
+import nodemailer from "nodemailer";
 import {
   addDurationToExpiry,
   computeUserSubscriptionStatus,
@@ -16,8 +17,25 @@ async function populateOrderAddons(orders: any[]) {
   const mainProductIds = Array.from(new Set(orders.map((o: any) => o.product?.id).filter(Boolean))) as string[];
   const combinedIds = Array.from(new Set([...allAddonIds, ...mainProductIds]));
 
+  // Retrieve follow-up sending history
+  const historySetting = await prisma.appSetting.findUnique({
+    where: { key: "FOLLOWUP_HISTORY" }
+  }).catch(() => null);
+  let historyMap: Record<string, any[]> = {};
+  if (historySetting?.value) {
+    try {
+      historyMap = JSON.parse(historySetting.value);
+    } catch (e) {
+      historyMap = {};
+    }
+  }
+
   if (combinedIds.length === 0) {
-    return orders.map((o: any) => ({ ...o, addons: [] }));
+    return orders.map((o: any) => ({
+      ...o,
+      addons: [],
+      followUpHistory: historyMap[o.id] || []
+    }));
   }
 
   const rawAddonProducts = await prisma.digitalProduct.findMany({
@@ -31,7 +49,8 @@ async function populateOrderAddons(orders: any[]) {
   return orders.map((o: any) => ({
     ...o,
     product: o.product ? { ...o.product, coverUrl: (addonMap.get(o.product.id) as any)?.coverUrl || null } : null,
-    addons: (o.addonIds || []).map((id: string) => addonMap.get(id)).filter(Boolean)
+    addons: (o.addonIds || []).map((id: string) => addonMap.get(id)).filter(Boolean),
+    followUpHistory: historyMap[o.id] || []
   }));
 }
 
@@ -875,6 +894,177 @@ export async function adminUpdateUserAccessAction(params: {
     return {
       success: false,
       message: error?.message || "Gagal memperbarui akses user",
+    };
+  }
+}
+
+export async function recordFollowUpAction(
+  orderId: string,
+  type: "whatsapp" | "email",
+  target: string
+) {
+  const session = await auth();
+  if (!session?.user?.id || !isAdminEmail(session?.user?.email)) {
+    return { success: false, message: "Akses ditolak (Bukan Admin)." };
+  }
+
+  if (!orderId) {
+    return { success: false, message: "Order ID tidak valid." };
+  }
+
+  try {
+    const setting = await prisma.appSetting.findUnique({
+      where: { key: "FOLLOWUP_HISTORY" },
+    }).catch(() => null);
+
+    let historyMap: Record<string, any[]> = {};
+    if (setting?.value) {
+      try {
+        historyMap = JSON.parse(setting.value);
+      } catch (e) {
+        historyMap = {};
+      }
+    }
+
+    const currentOrderHistory = Array.isArray(historyMap[orderId]) ? historyMap[orderId] : [];
+    const newEntry = {
+      id: `fu_${Date.now()}_${Math.random().toString(36).substring(2, 7)}`,
+      type,
+      target,
+      timestamp: new Date().toISOString(),
+    };
+
+    const updatedOrderHistory = [newEntry, ...currentOrderHistory];
+    historyMap[orderId] = updatedOrderHistory;
+
+    await prisma.appSetting.upsert({
+      where: { key: "FOLLOWUP_HISTORY" },
+      update: { value: JSON.stringify(historyMap) },
+      create: { key: "FOLLOWUP_HISTORY", value: JSON.stringify(historyMap) },
+    });
+
+    return {
+      success: true,
+      history: updatedOrderHistory,
+    };
+  } catch (error: any) {
+    console.error("recordFollowUpAction error:", error);
+    return {
+      success: false,
+      message: error?.message || "Gagal menyimpan riwayat follow up.",
+    };
+  }
+}
+
+export async function sendFollowUpEmailAction(params: {
+  orderId: string;
+  toEmail: string;
+  customerName: string;
+  subject: string;
+  message: string;
+  productTitle?: string;
+  productImage?: string;
+}) {
+  const session = await auth();
+  if (!session?.user?.id || !isAdminEmail(session?.user?.email)) {
+    return { success: false, message: "Akses ditolak (Bukan Admin)." };
+  }
+
+  if (!params.toEmail || !params.subject || !params.message) {
+    return { success: false, message: "Parameter email tidak lengkap." };
+  }
+
+  if (!process.env.GMAIL_EMAIL || !process.env.GMAIL_APP_PASSWORD) {
+    return {
+      success: false,
+      message: "Konfigurasi server email belum diatur di server (GMAIL_EMAIL / GMAIL_APP_PASSWORD).",
+    };
+  }
+
+  try {
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.GMAIL_EMAIL,
+        pass: process.env.GMAIL_APP_PASSWORD,
+      },
+    });
+
+    // Format plain text into clean HTML paragraphs
+    const formattedHtmlMessage = params.message
+      .split("\n\n")
+      .map(
+        (p) =>
+          `<p style="margin: 0 0 14px 0; line-height: 1.6; color: #374151;">${p
+            .replace(/\n/g, "<br/>")
+            .replace(/\*(.*?)\*/g, "<strong>$1</strong>")}</p>`
+      )
+      .join("");
+
+    const fullHtml = `
+      <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; max-width: 600px; margin: 0 auto; background-color: #ffffff; border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden;">
+        <div style="background-color: #ea580c; padding: 22px 24px; text-align: center;">
+          <h1 style="color: #ffffff; margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -0.5px;">Ruang Creative Muslim</h1>
+        </div>
+        
+        <div style="padding: 28px 24px;">
+          ${
+            params.productTitle
+              ? `
+            <div style="display: flex; align-items: center; gap: 14px; background-color: #f9fafb; border: 1px solid #f3f4f6; border-radius: 10px; padding: 12px 16px; margin-bottom: 22px;">
+              ${
+                params.productImage
+                  ? `<img src="${
+                      params.productImage.startsWith("http")
+                        ? params.productImage
+                        : "https://ruangcreativemuslim.com" + params.productImage
+                    }" alt="${params.productTitle}" style="width: 52px; height: 64px; object-fit: contain; border-radius: 6px; background: #ffffff; border: 1px solid #e5e7eb;" />`
+                  : ""
+              }
+              <div>
+                <p style="margin: 0; font-size: 11px; text-transform: uppercase; color: #9ca3af; font-weight: 700; letter-spacing: 0.5px;">Informasi Pesanan</p>
+                <p style="margin: 3px 0 0 0; font-size: 15px; font-weight: 700; color: #111827;">${params.productTitle}</p>
+              </div>
+            </div>
+          `
+              : ""
+          }
+
+          <div style="font-size: 15px; color: #374151;">
+            ${formattedHtmlMessage}
+          </div>
+        </div>
+
+        <div style="background-color: #f9fafb; padding: 16px 24px; text-align: center; border-top: 1px solid #f3f4f6;">
+          <p style="margin: 0; font-size: 12px; color: #9ca3af; line-height: 1.5;">
+            Pesan ini dikirim otomatis oleh tim <strong>Ruang Creative Muslim</strong>.<br/>
+            Bila ada pertanyaan atau butuh bantuan lebih lanjut, Anda dapat langsung membalas email ini.
+          </p>
+        </div>
+      </div>
+    `;
+
+    await transporter.sendMail({
+      from: `"Ruang Creative Muslim" <${process.env.GMAIL_EMAIL}>`,
+      to: params.toEmail,
+      replyTo: process.env.GMAIL_EMAIL,
+      subject: params.subject,
+      text: params.message,
+      html: fullHtml,
+    });
+
+    const recordRes = await recordFollowUpAction(params.orderId, "email", params.toEmail);
+
+    return {
+      success: true,
+      message: "Email berhasil dikirim ke customer!",
+      history: recordRes.success ? recordRes.history : [],
+    };
+  } catch (error: any) {
+    console.error("sendFollowUpEmailAction error:", error);
+    return {
+      success: false,
+      message: error?.message || "Gagal mengirim email follow up.",
     };
   }
 }
