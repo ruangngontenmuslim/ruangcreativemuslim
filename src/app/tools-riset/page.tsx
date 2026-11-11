@@ -112,17 +112,17 @@ export default function ToolsRisetLandingPage() {
           </div>
 
           {/* ========================================================================= */}
-          {/* SEKSI: "4 Senjata Riset Lengkap dalam 1 Genggaman HP" (SHOWCASE KIRI-KANAN) */}
+          {/* SEKSI: "4 Tools Riset Lengkap, Cukup dalam 1 Genggaman HP" (SHOWCASE KIRI-KANAN) */}
           {/* ========================================================================= */}
           <div className="w-full mt-[32px] mb-4 flex flex-col items-center">
             
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-2">
-              <span className="block">4 Senjata Riset Lengkap</span>
-              <span className="block">dalam 1 Genggaman HP</span>
+              <span className="block">4 Tools Riset Lengkap,</span>
+              <span className="block">Dalam 1 Genggaman HP</span>
             </h2>
 
             <p className="text-[13px] sm:text-[14px] text-gray-600 dark:text-gray-400 text-center max-w-[460px] mx-auto mb-6 leading-relaxed">
-              Semua platform tempat berkumpulnya audiens siap kamu bedah performanya secara instan dengan simulasi langsung di layar HP kamu:
+              Riset performa konten dari berbagai platform langsung lewat HP kamu, dengan tampilan simulasi yang mudah dipahami.
             </p>
 
             {/* List Showcase Per Fitur (Clean Borderless Layout Berdampingan Kiri & Kanan / Zig-Zag) */}
@@ -138,16 +138,16 @@ export default function ToolsRisetLandingPage() {
                     Riset Instagram
                   </h3>
                   <p className="text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Bongkar Outlier Score Reels kompetitor, sortir views terbanyak, lihat hook caption terlaris, dan ekspor data ribuan postingan ke Excel/CSV.
+                    Temukan Reels kompetitor yang viral, urutkan berdasarkan views, intip hook dan caption, lalu ekspor data ke Excel/CSV.
                   </p>
                   <div className="pt-1 space-y-1.5 text-[12.5px] sm:text-[13px] text-gray-600 dark:text-gray-400 font-medium">
                     <div className="flex items-center gap-2">
                       <Zap className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
-                      <span>Deteksi otomatis Outlier Reels ⚡</span>
+                      <strong className="text-gray-900 dark:text-gray-100 font-semibold">Deteksi Reels dengan performa tinggi secara otomatis.</strong>
                     </div>
                     <div className="flex items-center gap-2">
                       <FileSpreadsheet className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                      <span>Ekspor Hook &amp; Naskah ke Excel / CSV</span>
+                      <strong className="text-gray-900 dark:text-gray-100 font-semibold">Ekspor data hook dan konten ke Excel/CSV.</strong>
                     </div>
                   </div>
                 </div>
@@ -173,16 +173,16 @@ export default function ToolsRisetLandingPage() {
                     Riset TikTok
                   </h3>
                   <p className="text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Pilah konten video pendek vs format photo slide yang sedang trending di niche kamu, unduh media tanpa watermark, dan bedah pola copywriting FYP.
+                    Temukan konten video dan photo slide yang sedang trending, pelajari pola copywriting FYP, dan unduh konten tanpa watermark.
                   </p>
                   <div className="pt-1 space-y-1.5 text-[12.5px] sm:text-[13px] text-gray-600 dark:text-gray-400 font-medium">
                     <div className="flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
-                      <span>Bongkar konten dengan FYP tertinggi</span>
+                      <Flame className="w-4 h-4 text-rose-500 fill-rose-500 shrink-0" />
+                      <strong className="text-gray-900 dark:text-gray-100 font-semibold">Temukan konten dengan views tertinggi.</strong>
                     </div>
                     <div className="flex items-center gap-2">
                       <Download className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                      <span>Download video / photo slide tanpa watermark</span>
+                      <strong className="text-gray-900 dark:text-gray-100 font-semibold">Download video dan photo slide tanpa watermark.</strong>
                     </div>
                   </div>
                 </div>
@@ -198,16 +198,16 @@ export default function ToolsRisetLandingPage() {
                     Riset YouTube
                   </h3>
                   <p className="text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Bongkar Outlier Score video &amp; Shorts kompetitor, pisahkan format konten, temukan pola judul pemenang, dan ekspor data ide ke Excel/CSV.
+                    Temukan video dan Shorts kompetitor yang populer, pelajari pola judul yang menarik, dan ekspor ide konten ke Excel/CSV.
                   </p>
                   <div className="pt-1 space-y-1.5 text-[12.5px] sm:text-[13px] text-gray-600 dark:text-gray-400 font-medium">
                     <div className="flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
-                      <span>Filter cepat Shorts vs Video Reguler</span>
+                      <Search className="w-4 h-4 text-amber-500 shrink-0" />
+                      <strong className="text-gray-900 dark:text-gray-100 font-semibold">Filter Shorts dan video reguler.</strong>
                     </div>
                     <div className="flex items-center gap-2">
                       <FileSpreadsheet className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                      <span>Ekspor database ide judul &amp; hook</span>
+                      <strong className="text-gray-900 dark:text-gray-100 font-semibold">Ekspor ide judul dan hook ke Excel/CSV.</strong>
                     </div>
                   </div>
                 </div>
@@ -233,16 +233,16 @@ export default function ToolsRisetLandingPage() {
                     Riset Facebook
                   </h3>
                   <p className="text-[14px] sm:text-[15px] text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Bongkar Outlier Score Reels, Video &amp; Foto halaman kompetitor, sortir interaksi tertinggi, dan intip konten yang menghasilkan share dan omset masif.
+                    Temukan Reels, video, dan foto kompetitor yang viral. Lihat konten dengan interaksi tertinggi dan pelajari caption yang menarik banyak audiens.
                   </p>
                   <div className="pt-1 space-y-1.5 text-[12.5px] sm:text-[13px] text-gray-600 dark:text-gray-400 font-medium">
                     <div className="flex items-center gap-2">
-                      <Zap className="w-4 h-4 text-amber-500 fill-amber-500 shrink-0" />
-                      <span>Lacak konten fanspage dengan viralitas tinggi</span>
+                      <Flame className="w-4 h-4 text-rose-500 fill-rose-500 shrink-0" />
+                      <strong className="text-gray-900 dark:text-gray-100 font-semibold">Temukan konten Fanspage dengan performa tinggi.</strong>
                     </div>
                     <div className="flex items-center gap-2">
                       <FileSpreadsheet className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                      <span>Ekspor caption &amp; formula copywriting</span>
+                      <strong className="text-gray-900 dark:text-gray-100 font-semibold">Ekspor caption dan formula copywriting.</strong>
                     </div>
                   </div>
                 </div>
@@ -253,12 +253,12 @@ export default function ToolsRisetLandingPage() {
           </div>
 
           {/* ========================================================================= */}
-          {/* SEKSI: "Yang Kamu Dapetin" (Checklist Cards Hijau) */}
+          {/* SEKSI: "Yang Kamu Dapatkan" (Checklist Cards Hijau) */}
           {/* ========================================================================= */}
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[24px] mb-4">
             
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
-              Yang Kamu Dapetin
+              Yang Kamu Dapatkan
             </h2>
 
             <div className="space-y-2 text-left">
@@ -268,7 +268,7 @@ export default function ToolsRisetLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Akses sistem riset <strong className="text-gray-950 dark:text-white font-bold">4 Platform Sekaligus</strong> (Instagram, TikTok, YouTube, Facebook).
+                  <strong className="text-gray-950 dark:text-white font-bold">Akses riset 4 platform:</strong> Instagram, TikTok, YouTube, dan Facebook.
                 </span>
               </div>
 
@@ -278,7 +278,7 @@ export default function ToolsRisetLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  <strong className="text-amber-600 dark:text-amber-400 font-bold">Kalkulator Outlier Score Otomatis</strong> yang langsung menandai konten juara.
+                  <strong className="text-gray-950 dark:text-white font-bold">Outlier Score otomatis</strong> untuk menemukan konten berperforma tinggi.
                 </span>
               </div>
 
@@ -288,7 +288,7 @@ export default function ToolsRisetLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Fitur sortir instan berdasarkan <strong className="text-gray-950 dark:text-white font-bold">Views, Likes, Komentar, dan Tanggal Posting</strong>.
+                  <strong className="text-gray-950 dark:text-white font-bold">Filter konten instan</strong> berdasarkan views, likes, komentar, dan tanggal posting.
                 </span>
               </div>
 
@@ -298,7 +298,7 @@ export default function ToolsRisetLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Fitur <strong className="text-gray-950 dark:text-white font-bold">Ekspor Data &amp; Naskah ke Excel / CSV / Google Sheets</strong> dengan 1 klik.
+                  <strong className="text-gray-950 dark:text-white font-bold">Ekspor data ke Excel, CSV, dan Google Sheets</strong> hanya dengan 1 klik.
                 </span>
               </div>
 
@@ -308,7 +308,7 @@ export default function ToolsRisetLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Download media video dan audio referensi <strong className="text-emerald-700 dark:text-emerald-400 font-bold">tanpa watermark</strong>.
+                  <strong className="text-gray-950 dark:text-white font-bold">Download video dan audio referensi</strong> tanpa watermark.
                 </span>
               </div>
 
@@ -318,17 +318,7 @@ export default function ToolsRisetLandingPage() {
                   <Check className="w-3.5 h-3.5 stroke-[3]" />
                 </div>
                 <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Bebas riset <strong className="text-gray-950 dark:text-white font-bold">akun kompetitor siapa pun</strong> di niche apa pun tanpa batasan kategori.
-                </span>
-              </div>
-
-              {/* Point 7 */}
-              <div className="flex items-start gap-3 p-2.5 sm:p-3 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
-                <div className="w-5 h-5 rounded-md bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-xs mt-0.5">
-                  <Check className="w-3.5 h-3.5 stroke-[3]" />
-                </div>
-                <span className="text-[13px] sm:text-[14px] text-gray-800 dark:text-gray-200 font-medium leading-snug">
-                  Panduan video cara menemukan <strong className="text-gray-950 dark:text-white font-bold">Angle &amp; Hook Konten Pemenang</strong>.
+                  <strong className="text-gray-950 dark:text-white font-bold">Riset akun kompetitor</strong> di berbagai niche tanpa batasan kategori.
                 </span>
               </div>
             </div>
@@ -397,62 +387,65 @@ export default function ToolsRisetLandingPage() {
           </div>
 
           {/* ========================================================================= */}
-          {/* SEKSI: "Yang Sering Ditanyain" (FAQ) */}
+          {/* SEKSI: "Yang Sering Ditanyakan (FAQ)" */}
           {/* ========================================================================= */}
           <div className="w-full max-w-[440px] sm:max-w-[480px] mx-auto mt-[20px] mb-0">
             
             <h2 className="text-[25px] sm:text-[30px] md:text-[34px] font-extrabold text-gray-950 dark:text-white tracking-tight leading-[1.22] text-center mb-4">
-              Yang Sering Ditanyain
+              Yang Sering Ditanyakan (FAQ)
             </h2>
 
             <div className="space-y-2.5 text-left">
               {/* Q1 */}
               <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
-                  Apakah harus login pakai akun Instagram / TikTok pribadi saya?
+                  Apakah harus login pakai akun Instagram atau TikTok pribadi?
                 </h3>
                 <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
-                  <strong className="text-emerald-600 dark:text-emerald-400 font-bold">SAMA SEKALI TIDAK.</strong> Akun kamu 100% aman karena kamu hanya perlu mengetik username akun kompetitor atau rujukan yang ingin kamu riset.
+                  <strong className="text-emerald-600 dark:text-emerald-400 font-bold">Tidak perlu!</strong> Akun kamu tetap aman. Cukup masukkan username akun kompetitor yang ingin kamu riset.
                 </p>
               </div>
 
               {/* Q2 */}
               <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
-                  Apakah benar-benar bisa lewat HP doang?
+                  Apakah bisa digunakan lewat HP?
                 </h3>
                 <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
-                  Bisa banget! Ruang Riset dirancang dengan antarmuka yang sangat responsif dan ringan, sehingga sangat nyaman dibuka dari browser HP mana pun.
+                  <strong className="text-emerald-600 dark:text-emerald-400 font-bold">Bisa banget!</strong> Ruang Riset dirancang responsif dan ringan, sehingga nyaman digunakan langsung lewat browser HP.
                 </p>
               </div>
 
               {/* Q3 */}
               <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
-                  Apa itu Outlier Score dan kenapa penting?
+                  Apa itu Outlier Score?
                 </h3>
                 <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
-                  Outlier Score adalah angka pengali yang menunjukkan seberapa viral sebuah video dibanding rata-rata konten akun tersebut. Misalnya Outlier 10× artinya video itu ditonton 10 kali lipat lebih banyak dari biasanya. Meniru formula video outlier memberi peluang viral jauh lebih besar!
+                  Outlier Score adalah angka yang menunjukkan seberapa tinggi performa sebuah konten dibanding rata-rata konten akun tersebut.
+                </p>
+                <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1.5">
+                  Contohnya, Outlier 10× berarti views-nya 10 kali lebih tinggi dari biasanya. Ini membantu kamu menemukan pola konten yang berpotensi viral.
                 </p>
               </div>
 
               {/* Q4 */}
               <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
-                  Apakah cocok untuk akun pemula dengan 0 follower?
+                  Apakah cocok untuk pemula dengan 0 followers?
                 </h3>
                 <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
-                  Justru akun baru <strong className="text-gray-950 dark:text-white font-bold">sangat butuh riset</strong> agar tidak buang-buang waktu mengunggah konten yang tidak ada peminatnya. Dengan riset, setiap konten yang kamu upload sudah punya dasar data yang kuat.
+                  <strong className="text-emerald-600 dark:text-emerald-400 font-bold">Sangat cocok!</strong> Riset membantu kamu menemukan ide konten yang sudah terbukti diminati, jadi tidak perlu menebak-nebak saat mulai membuat konten.
                 </p>
               </div>
 
               {/* Q5 */}
               <div className="p-3.5 sm:p-4 rounded-xl bg-gray-50/80 dark:bg-white/[0.04] border border-gray-200/80 dark:border-white/10 shadow-xs">
                 <h3 className="font-bold text-[13.5px] sm:text-[14.5px] text-gray-950 dark:text-white leading-snug">
-                  Bagaimana jika saya gaptek atau butuh bantuan teknis?
+                  Bagaimana jika saya gaptek atau mengalami kendala?
                 </h3>
                 <p className="text-[13px] sm:text-[13.5px] text-gray-700 dark:text-gray-300 leading-relaxed mt-1">
-                  Tenang, kami sudah siapkan video tutorial penggunaan yang sangat mudah dipahami langkah demi langkah, plus tim support siap membantu jika ada kendala.
+                  Tenang! Tim support juga siap membantu jika kamu mengalami kendala.
                 </p>
               </div>
             </div>
