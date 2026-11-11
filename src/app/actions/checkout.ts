@@ -119,9 +119,6 @@ export async function getCheckoutDetailsAction(type: string, productId?: string)
     if (ownedProductIds.has(productId)) {
       return { badRequest: true, redirect: `/ruang-belajar/${rawProduct.slug}` };
     }
-    if (!rawProduct.price || rawProduct.price <= 0) {
-      return { badRequest: true, redirect: `/ruang-belajar/${rawProduct.slug}` };
-    }
   }
 
   const combinedRawProducts = [
@@ -356,4 +353,108 @@ export async function validatePromoCodeAction(
     voucherCode: voucher.code,
     targetTitle: voucher.targetTitle,
   };
+}
+
+export async function processFreeCheckoutClaimAction(data: {
+  productId: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+}) {
+  try {
+    const session = await auth();
+    if (!session?.user?.id) {
+      return { success: false, error: "Silakan login terlebih dahulu untuk klaim ebook gratis." };
+    }
+
+    const userId = session.user.id;
+    const user = await prisma.user.findUnique({ where: { id: userId } });
+    if (!user) {
+      return { success: false, error: "Akun pengguna tidak ditemukan." };
+    }
+
+    if (!data.productId) {
+      return { success: false, error: "ID Produk diperlukan." };
+    }
+
+    const product = await prisma.digitalProduct.findUnique({
+      where: { id: data.productId, isActive: true },
+    });
+
+    if (!product) {
+      return { success: false, error: "Produk tidak ditemukan atau tidak aktif." };
+    }
+
+    // Hanya izinkan klaim gratis jika accessLevel adalah FREE atau harga = 0
+    if (product.accessLevel !== "FREE" && product.price > 0) {
+      return { success: false, error: "Produk ini berbayar, silakan selesaikan pembayaran." };
+    }
+
+    // 1. Simpan Nama & Nomor WhatsApp ke tabel User (Lead Capture)
+    if (data.customerPhone && data.customerPhone.trim() !== "") {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          phone: data.customerPhone.trim(),
+          ...(data.customerName && data.customerName.trim() !== "" ? { name: data.customerName.trim() } : {}),
+        },
+      });
+    }
+
+    // 2. Buka Akses Produk di UserOwnedProduct
+    await prisma.userOwnedProduct.upsert({
+      where: { userId_digitalProductId: { userId, digitalProductId: product.id } },
+      update: {},
+      create: { userId, digitalProductId: product.id },
+    });
+
+    // 3. Bersihkan order PENDING sebelumnya untuk produk ini
+    await prisma.order.deleteMany({
+      where: {
+        userId,
+        digitalProductId: product.id,
+        status: "PENDING",
+      },
+    }).catch(() => {});
+
+    // 4. Rekam order dengan status SUCCESS dan paymentMethod FREE_CLAIM
+    const existingSuccessOrder = await prisma.order.findFirst({
+      where: {
+        userId,
+        digitalProductId: product.id,
+        status: "SUCCESS",
+      },
+    });
+
+    let orderId = existingSuccessOrder?.id;
+    if (!existingSuccessOrder) {
+      const newOrder = await prisma.order.create({
+        data: {
+          userId,
+          digitalProductId: product.id,
+          orderType: product.productType || "EBOOK",
+          amount: 0,
+          status: "SUCCESS",
+          paymentMethod: "FREE_CLAIM",
+        },
+      });
+      orderId = newOrder.id;
+    }
+
+    // 5. Revalidasi cache tags
+    await revalidateAfterPurchaseAction();
+
+    return {
+      success: true,
+      orderId,
+      productSlug: product.slug,
+      message: "Selamat! Akses ebook gratis berhasil dibuka.",
+    };
+  } catch (error: any) {
+    console.error("processFreeCheckoutClaimAction error:", error);
+    return {
+      success: false,
+      error: error?.message || "Terjadi kesalahan saat memproses klaim gratis.",
+    };
+  }
 }

@@ -57,8 +57,8 @@ export async function createCheckoutToken(data: {
         return { success: false, error: "Produk tidak ditemukan atau sedang tidak aktif." };
       }
       
-      if (!product.price || product.price <= 0) {
-        return { success: false, error: "Produk ini gratis, silakan gunakan tombol klaim di halaman produk." };
+      if ((!product.price || product.price <= 0) && (!data.addonIds || data.addonIds.length === 0)) {
+        return { success: false, error: "Produk ini gratis, silakan gunakan tombol klaim gratis di checkout." };
       }
       
       baseAmount = product.price;

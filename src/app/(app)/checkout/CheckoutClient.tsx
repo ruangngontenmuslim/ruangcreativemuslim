@@ -4,9 +4,9 @@ import { useState, useMemo, useEffect } from "react";
 import Script from "next/script";
 import { useSession } from "next-auth/react";
 import { createCheckoutToken, verifyPayment, cancelPayment } from "@/app/actions/payment";
-import { validatePromoCodeAction } from "@/app/actions/checkout";
+import { validatePromoCodeAction, processFreeCheckoutClaimAction } from "@/app/actions/checkout";
 import { useRouter } from "next/navigation";
-import { Loader2, CheckCircle2, ChevronRight, X, Lock, CreditCard, AlertCircle } from "lucide-react";
+import { Loader2, CheckCircle2, ChevronRight, X, Lock, CreditCard, AlertCircle, Gift } from "lucide-react";
 import { ClawdVerifyVisual } from "@/components/ui/ClawdLoadingVisuals";
 import { BackButton } from "@/components/ui/BackButton";
 import Link from "next/link";
@@ -129,7 +129,7 @@ export default function CheckoutClient({
     return new Intl.NumberFormat("id-ID", { maximumFractionDigits: 0 }).format(num);
   };
 
-  const { grossAmount, adminFee, discountAmount } = useMemo(() => {
+  const { grossAmount, adminFee, discountAmount, isFreeClaim } = useMemo(() => {
     const addonsTotal = availableAddons.filter((a) => selectedAddons.includes(a.id)).reduce((acc, curr) => acc + (curr.price || 0), 0);
 
     let discount = 0;
@@ -146,8 +146,18 @@ export default function CheckoutClient({
 
     const finalBase = baseAmount + addonsTotal - discount;
 
+    if (finalBase <= 0) {
+      return {
+        grossAmount: 0,
+        adminFee: 0,
+        totalAddonsPrice: addonsTotal,
+        discountAmount: discount,
+        isFreeClaim: true,
+      };
+    }
+
     const calc = calculatePaymentFees(finalBase, selectedMethod);
-    return { ...calc, totalAddonsPrice: addonsTotal, discountAmount: discount };
+    return { ...calc, totalAddonsPrice: addonsTotal, discountAmount: discount, isFreeClaim: false };
   }, [baseAmount, selectedMethod, selectedAddons, availableAddons, appliedVoucher]);
 
   const handleApplyPromo = async () => {
@@ -332,6 +342,38 @@ export default function CheckoutClient({
 
     setLoading(true);
     setErrorMessage("");
+
+    // Khusus Klaim Ebook Gratis (Total Rp 0): Langsung proses di server tanpa memanggil Midtrans
+    if (isFreeClaim && productId) {
+      try {
+        const res = await processFreeCheckoutClaimAction({
+          productId,
+          customerName,
+          customerEmail,
+          customerPhone,
+        });
+
+        if (!res || res.success === false) {
+          setErrorMessage(res?.error || "Gagal memproses klaim gratis.");
+          setPaymentState("error");
+          setLoading(false);
+          return;
+        }
+
+        if (res.orderId) {
+          setCurrentOrderId(res.orderId);
+        }
+        setPaymentState("success");
+        setLoading(false);
+        return;
+      } catch (error: any) {
+        setErrorMessage(error?.message || "Terjadi kesalahan saat memproses klaim gratis.");
+        setPaymentState("error");
+        setLoading(false);
+        return;
+      }
+    }
+
     try {
       const res = await createCheckoutToken({
         type,
@@ -556,7 +598,9 @@ export default function CheckoutClient({
           <div className="space-y-2 mb-4">
             <div className="flex justify-between items-center text-sm">
               <span className="text-gray-600 dark:text-gray-400 font-medium">Subtotal</span>
-              <span className="text-gray-900 dark:text-white">Rp {formatRupiah(baseAmount)}</span>
+              <span className="text-gray-900 dark:text-white">
+                {isFreeClaim ? "Rp 0 (Gratis)" : `Rp ${formatRupiah(baseAmount)}`}
+              </span>
             </div>
             {discountAmount > 0 && (
               <div className="flex justify-between items-center text-sm">
@@ -572,60 +616,78 @@ export default function CheckoutClient({
 
           <div className="flex justify-between items-center mb-4 pt-3 border-t border-gray-100 dark:border-white/10">
             <span className="font-bold text-gray-900 dark:text-gray-100">TOTAL</span>
-            <span className="text-lg font-black text-gray-900 dark:text-white">Rp {formatRupiah(grossAmount)}</span>
+            <span className="text-lg font-black text-gray-900 dark:text-white">
+              {isFreeClaim ? "Rp 0 (Gratis)" : `Rp ${formatRupiah(grossAmount)}`}
+            </span>
           </div>
 
-          {appliedVoucher ? (
-            <div className="flex justify-between text-rn-accent text-sm items-center mb-4 p-3 bg-rn-accent/10 rounded-xl border border-rn-accent/20">
-              <div className="flex items-center gap-2 font-bold">
-                <span className="uppercase">{appliedVoucher.code}</span>
+          {!isFreeClaim && (
+            appliedVoucher ? (
+              <div className="flex justify-between text-rn-accent text-sm items-center mb-4 p-3 bg-rn-accent/10 rounded-xl border border-rn-accent/20">
+                <div className="flex items-center gap-2 font-bold">
+                  <span className="uppercase">{appliedVoucher.code}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="font-black">- Rp {formatRupiah(appliedVoucher.amount)}</span>
+                  <button onClick={() => setAppliedVoucher(null)} className="p-1 hover:bg-rn-accent/20 rounded-full transition-colors">
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="font-black">- Rp {formatRupiah(appliedVoucher.amount)}</span>
-                <button onClick={() => setAppliedVoucher(null)} className="p-1 hover:bg-rn-accent/20 rounded-full transition-colors">
-                  <X className="w-4 h-4" />
-                </button>
+            ) : (
+              <button
+                onClick={() => setShowVoucherModal(true)}
+                disabled={isPending}
+                className="w-full flex items-center justify-center gap-2 py-3 mb-4 rounded-xl border border-dashed border-orange-500/50 text-orange-600 dark:text-orange-400 text-sm font-bold hover:bg-orange-500/5 dark:hover:bg-orange-500/10 transition-colors disabled:opacity-50"
+              >
+                + Add Voucher
+              </button>
+            )
+          )}
+
+          {isFreeClaim ? (
+            <div className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800/40 rounded-xl p-3.5 flex items-start gap-3 mb-4">
+              <div className="p-2 rounded-lg bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 shrink-0">
+                <Gift className="w-5 h-5" />
+              </div>
+              <div>
+                <h5 className="text-xs font-bold text-gray-900 dark:text-white">Klaim Produk Gratis (Rp 0)</h5>
+                <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5 leading-relaxed">
+                  Tidak memerlukan transfer pembayaran. Akses materi langsung terbuka otomatis setelah melengkapi data kontak di samping.
+                </p>
               </div>
             </div>
           ) : (
-            <button
-              onClick={() => setShowVoucherModal(true)}
-              disabled={isPending}
-              className="w-full flex items-center justify-center gap-2 py-3 mb-4 rounded-xl border border-dashed border-orange-500/50 text-orange-600 dark:text-orange-400 text-sm font-bold hover:bg-orange-500/5 dark:hover:bg-orange-500/10 transition-colors disabled:opacity-50"
-            >
-              + Add Voucher
-            </button>
-          )}
-
-          <div className="border border-rn-accent/50 dark:border-rn-accent/40 rounded-xl overflow-hidden mb-4 relative flex-none">
-            <button
-              onClick={() => !isPending && setShowPaymentModal(true)}
-              disabled={isPending}
-              className={`w-full p-3 flex items-center justify-between bg-white transition-colors ${isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50"}`}
-            >
-              <div className="flex items-center gap-3">
-                {selectedMethodIconUrls && selectedMethodIconUrls.length > 0 ? (
-                  <div className="flex items-center gap-1.5 flex-wrap">
-                    {selectedMethodIconUrls.map((url, i) => (
-                      <img key={i} src={url} alt={selectedMethod} className={`max-w-[140px] object-contain ${selectedMethodIconUrls.length > 1 ? "h-4" : "h-5"}`} />
-                    ))}
-                  </div>
-                ) : (
-                  <span className="font-bold text-sm text-gray-800">{PAYMENT_METHODS[selectedMethod]?.name || "Pilih Metode"}</span>
-                )}
-              </div>
-              <ChevronRight className="w-4 h-4 text-rn-accent" />
-            </button>
-            <div className="bg-gray-50 dark:bg-[#0F172A] p-2.5 border-t border-gray-100 dark:border-[#2C3246] flex items-start gap-2.5">
-              <div className="mt-0.5 text-rn-accent">
-                <Lock className="w-4 h-4" />
-              </div>
-              <div>
-                <h5 className="text-[11px] font-bold text-gray-900 dark:text-white">Secure Payment</h5>
-                <p className="text-[9px] text-gray-500">All your payments are secured with RSA encryption</p>
+            <div className="border border-rn-accent/50 dark:border-rn-accent/40 rounded-xl overflow-hidden mb-4 relative flex-none">
+              <button
+                onClick={() => !isPending && setShowPaymentModal(true)}
+                disabled={isPending}
+                className={`w-full p-3 flex items-center justify-between bg-white transition-colors ${isPending ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-50"}`}
+              >
+                <div className="flex items-center gap-3">
+                  {selectedMethodIconUrls && selectedMethodIconUrls.length > 0 ? (
+                    <div className="flex items-center gap-1.5 flex-wrap">
+                      {selectedMethodIconUrls.map((url, i) => (
+                        <img key={i} src={url} alt={selectedMethod} className={`max-w-[140px] object-contain ${selectedMethodIconUrls.length > 1 ? "h-4" : "h-5"}`} />
+                      ))}
+                    </div>
+                  ) : (
+                    <span className="font-bold text-sm text-gray-800">{PAYMENT_METHODS[selectedMethod]?.name || "Pilih Metode"}</span>
+                  )}
+                </div>
+                <ChevronRight className="w-4 h-4 text-rn-accent" />
+              </button>
+              <div className="bg-gray-50 dark:bg-[#0F172A] p-2.5 border-t border-gray-100 dark:border-[#2C3246] flex items-start gap-2.5">
+                <div className="mt-0.5 text-rn-accent">
+                  <Lock className="w-4 h-4" />
+                </div>
+                <div>
+                  <h5 className="text-[11px] font-bold text-gray-900 dark:text-white">Secure Payment</h5>
+                  <p className="text-[9px] text-gray-500">All your payments are secured with RSA encryption</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           <div className="mb-5 flex-1 flex flex-col justify-end min-h-[90px]">
             {isPending ? (
@@ -723,10 +785,18 @@ export default function CheckoutClient({
                       : handlePay
                   }
                   disabled={loading || isCancelLoading}
-                  className="w-full text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm shadow-orange-500/20 bg-[#f97316] hover:bg-[#ea580c] dark:bg-[#f97316] dark:hover:bg-[#fb923c]"
+                  className={`w-full text-white font-bold py-3.5 rounded-xl transition-all flex items-center justify-center gap-2 shadow-sm ${
+                    isFreeClaim
+                      ? "bg-emerald-600 hover:bg-emerald-700 active:scale-[0.99] shadow-emerald-600/20"
+                      : "bg-[#f97316] hover:bg-[#ea580c] dark:bg-[#f97316] dark:hover:bg-[#fb923c] shadow-orange-500/20"
+                  }`}
                 >
                   {loading ? <Loader2 className="w-5 h-5 animate-spin" /> : null}
-                  {loading ? "Processing..." : `Buy Now - IDR ${formatRupiah(grossAmount)}`}
+                  {loading
+                    ? "Memproses..."
+                    : isFreeClaim
+                    ? "Klaim Sekarang - GRATIS (Rp 0)"
+                    : `Buy Now - IDR ${formatRupiah(grossAmount)}`}
                 </button>
               </div>
             )}

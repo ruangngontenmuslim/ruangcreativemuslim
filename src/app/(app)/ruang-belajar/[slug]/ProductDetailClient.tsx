@@ -276,26 +276,18 @@ export default function ProductDetailClient({ slug, initialData }: { slug: strin
                       </div>
                       
                       <div className="flex flex-col sm:flex-row gap-3">
-                        {/* If it's a FREE ebook, show the Klaim (Rp 0) Form */}
+                        {/* If it's a FREE ebook, redirect to /checkout to collect contact info (WhatsApp) */}
                         {isFree ? (
                           <div className="w-full">
-                            <button
-                              type="button"
-                              onClick={handleClaimFree}
-                              disabled={isSubmitting}
-                              className={`w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white px-6 py-3.5 rounded-xl font-bold transition-all shadow-lg shadow-emerald-600/20 cursor-pointer ${
-                                isSubmitting ? 'opacity-80 cursor-wait' : ''
-                              }`}
+                            <Link 
+                              href={`/checkout?type=EBOOK&productId=${ebook.id}`} 
+                              onMouseEnter={() => preload(["checkout", "EBOOK", ebook.id], () => getCheckoutDetailsAction("EBOOK", ebook.id))}
+                              onTouchStart={() => preload(["checkout", "EBOOK", ebook.id], () => getCheckoutDetailsAction("EBOOK", ebook.id))}
+                              onClick={() => trackProductClickAction(ebook.id)}
+                              className="w-full flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white px-6 py-3.5 rounded-xl font-bold transition-all shadow-lg shadow-emerald-600/20 cursor-pointer"
                             >
-                              {isSubmitting ? (
-                                <>
-                                  <Loader2 className="w-5 h-5 animate-spin" />
-                                  <span>Membuka Akses {productTypeName}...</span>
-                                </>
-                              ) : (
-                                <span>Klaim Gratis (Rp 0)</span>
-                              )}
-                            </button>
+                              <span>Klaim Gratis (Rp 0)</span>
+                            </Link>
                           </div>
                         ) : (
                           /* Otherwise, show purchase & upgrade options */

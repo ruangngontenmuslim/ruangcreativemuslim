@@ -248,9 +248,13 @@ export default function CheckoutModals({
             <div className="flex justify-center mb-2">
               <ClawdSuccessVisual />
             </div>
-            <h2 className="text-2xl font-black mb-1 text-gray-900 dark:text-white">Pembayaran Berhasil!</h2>
+            <h2 className="text-2xl font-black mb-1 text-gray-900 dark:text-white">
+              {grossAmount === 0 ? "Klaim Berhasil!" : "Pembayaran Berhasil!"}
+            </h2>
             <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-5">
-              Alhamdulillah, pembayaran Anda telah kami terima.
+              {grossAmount === 0
+                ? "Alhamdulillah, akses produk gratis Anda telah berhasil dibuka."
+                : "Alhamdulillah, pembayaran Anda telah kami terima."}
             </p>
 
             {/* Digital Receipt Card */}
@@ -272,19 +276,19 @@ export default function CheckoutModals({
               <div className="flex justify-between items-center pb-2 border-b border-gray-200/60 dark:border-[#2C3246]">
                 <span className="text-gray-500 dark:text-gray-400">Metode Bayar</span>
                 <span className="font-medium text-gray-800 dark:text-gray-200">
-                  {PAYMENT_METHODS[selectedMethod]?.name || selectedMethod}
+                  {grossAmount === 0 ? "Klaim Gratis (Rp 0)" : (PAYMENT_METHODS[selectedMethod]?.name || selectedMethod)}
                 </span>
               </div>
               <div className="flex justify-between items-center pb-2 border-b border-gray-200/60 dark:border-[#2C3246]">
                 <span className="text-gray-500 dark:text-gray-400">Status</span>
                 <span className="inline-flex items-center font-bold text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-950/40 px-2.5 py-0.5 rounded-full text-[11px] tracking-wide">
-                  LUNAS
+                  {grossAmount === 0 ? "SUKSES" : "LUNAS"}
                 </span>
               </div>
               <div className="flex justify-between items-center pt-1 font-bold">
                 <span className="text-gray-700 dark:text-gray-300">Total Bayar</span>
                 <span className="text-base text-gray-900 dark:text-white font-black text-rn-accent">
-                  Rp {formatRupiah(grossAmount)}
+                  {grossAmount === 0 ? "Rp 0 (Gratis)" : `Rp ${formatRupiah(grossAmount)}`}
                 </span>
               </div>
             </div>
